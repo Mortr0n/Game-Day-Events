@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import NavBar from '../components/NavBar';
 
 const Main = () => {
-    const [message, setMessage] = useState("Not working");
 
-    useEffect(() => {
-        axios.get("http://localhost:8000/api")
-            .then((res) => { setMessage(res.data.message)})
-            .catch((err) => console.log(err));
-    }, []);
+    
 
     return(
         <div>
-            <h2>Message from the backend: {message}</h2>
+            <NavBar />
+            <h2 className='pageTitle'>Welcome User!</h2>
         </div>
     )
 }
