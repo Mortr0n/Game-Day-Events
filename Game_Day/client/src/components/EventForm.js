@@ -12,6 +12,13 @@ const EventForm = (props) => {
     const [ date, setDate ] = useState(initialDate);
     const [ suggestedGame, setSuggestedGame ] = useState(initialSuggestedGame);
     const [ eventDescription, setEventDescription ] = useState(initialEventDescription);
+    const allStates = [
+        "AK", "AL", "AR", "AS", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "GU", "HI", 
+        "IA", "ID", "IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MP", 
+        "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", 
+        "PR", "RI", "SC", "SD", "TN", "TX", "UM", "UT", "VA", "VI", "VT", "WA", "WI", "WV", 
+        "WY"
+    ]
     
     const formSubmitHandler = (e) => {
         e.preventDefault();
@@ -58,14 +65,34 @@ const EventForm = (props) => {
                         onChange={(e => setCity(e.target.value))} />
                         <label htmlFor='city' className='form-label'>City</label>
                     </div>
+
+                    {/* State drop down */}
                     <div className='form-floating'>
+                        <select
+                        className='form-select'
+                        onChange={(e => setState(e.target.value))}
+                        >
+                            <option value={state}>Select Your State</option>
+                            {
+                                allStates.map((state, index) => {
+                                    return(
+                                        <option key={index} value={state}>{state}</option>
+                                    )
+                                })
+                            }
+                        </select>
+{/* 
                         <input
                         type="text"
                         className='form-control mb-2'
                         value={state}
-                        onChange={(e => setState(e.target.value))} />
+                        onChange={(e => setState(e.target.value))} /> */}
                         <label htmlFor='state' className='form-label'>State</label>
                     </div>
+
+
+
+
                     </div>
                     <div className='col-4'>
                     <div className='form-floating'>

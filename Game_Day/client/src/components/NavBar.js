@@ -11,7 +11,12 @@ const NavBar = () => {
     return(
         <Navbar bg="primary" expand="lg">
             <Container>
-                <Navbar.Brand className="m-auto" href="#home">Game Day Events</Navbar.Brand>
+                <Link to={'/events'} className='m-auto'>
+                    <Navbar.Brand >
+                        Game Day Events
+                    </Navbar.Brand>
+                </Link>
+                    
                 <Nav variant="pills" className="m-auto">
                     <Link className='navLinks' to={'/events'}>
                         <Navbar.Brand >Home</Navbar.Brand>

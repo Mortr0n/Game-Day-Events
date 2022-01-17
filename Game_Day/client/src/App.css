@@ -14,11 +14,25 @@
   text-decoration: none;
 }
 
+.eventTable {
+  border-radius: 10px;
+}
+
 .eventDetailsTop {
   background-image: url('../src/images/banner.jpg');
-  background-size: 1280px 200px;
+  background-size: 1320px 200px;
   border-radius: 10px;
-  border-bottom: 2px solid maroon;
+  border-bottom: 5px solid darkblue;
+}
+
+.eventDetailLabels {
+  font-size: 1.5em;
+}
+
+.eventDescriptionBox {
+  border: 2px solid black;
+  max-height: 8em;
+  overflow-y: auto;
 }
 
 .eventHeaders {
