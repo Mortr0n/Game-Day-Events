@@ -25,6 +25,11 @@
   border-bottom: 5px solid darkblue;
 }
 
+.removeTextDecoration {
+  text-decoration: none;
+  color: white;
+}
+
 .eventDetailLabels {
   font-size: 1.5em;
 }
@@ -33,6 +38,10 @@
   border: 2px solid black;
   max-height: 8em;
   overflow-y: auto;
+}
+
+.featuredEventsBox {
+  border: 2px solid black;
 }
 
 .eventHeaders {

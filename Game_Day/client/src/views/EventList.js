@@ -17,12 +17,16 @@ const EventList = (props) => {
             .catch((err) => console.log(err));
     }, [])
 
+    const removeFromDom = (eventId) => {
+        setGameEvents(gameEvents.filter(gameEvent=>gameEvent._id !== eventId));
+    }
+
     return(
         <div>
             <NavBar />
             <h1 className='pageTitle'>Upcoming Events</h1>
             { loaded &&
-                <ListEvents gameEvents={gameEvents} setGameEvents={setGameEvents} />
+                <ListEvents gameEvents={gameEvents} setGameEvents={setGameEvents}  />
             }
         </div>
     )

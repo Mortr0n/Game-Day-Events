@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from '@reach/router';
+import { format } from 'date-fns';
 
 const EventList = (props) => {
     const { gameEvents, setGameEvents } = props;
@@ -29,7 +30,7 @@ const EventList = (props) => {
                                     </td>
                                     <td>{gameEvent.streetAddress}</td>
                                     <td>{gameEvent.attendeeMax}</td>
-                                    <td>{gameEvent.date}</td>
+                                    <td>{format(new Date(gameEvent.date), 'MMMM-dd-yyyy')}</td>
                                     <td>{gameEvent.suggestedGame}</td>
                                     <td>JOIN</td>
                                 </tr>

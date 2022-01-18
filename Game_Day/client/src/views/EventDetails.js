@@ -3,6 +3,8 @@ import NavBar from '../components/NavBar';
 import axios from 'axios';
 import CommentForm from '../components/CommentForm';
 import { format } from 'date-fns';
+import { Link, navigate } from '@reach/router';
+import DeleteButton from '../components/DeleteButton';
 
 const EventDetails = (props) => {
     const { id } = props;
@@ -44,11 +46,19 @@ const EventDetails = (props) => {
                 </div>
                 <div className='row'>
                     <div className='col-3 offset-2'>
+                        {/* TODO: Edit Button needs replaced with real thing */}
+                        <Link className='removeTextDecoration' to={`/events/${id}/edit`}><button className='btn btn-success '>Edit</button></Link>
                         <p className='eventDetailLabels fw-bold'>Event Location</p>
-                        <p className='eventDetailLabels fw-bold'>Featured Events</p>
-                        <p className='eventDetailLabels'>{gameEvent.suggestedGame}</p>
+                        <div className='featuredEventsBox mb-5'>
+                            <p className='eventDetailLabels fw-bold'>Featured Events</p>
+                            <p className='eventDetailLabels'>{gameEvent.suggestedGame}</p>
+                        </div>
                     </div>
                     <div className='col-6'>
+                        {/* TODO: Replace Delete With Real Thing */}
+                        <DeleteButton id={id} successCallback={() => navigate('/events/list')} />
+                        <p className='eventDetailLabels'>{gameEvent.streetAddress}</p>
+                        <p className='eventDetailLabels'>{gameEvent.city}, {gameEvent.state}  {gameEvent.zip}</p>
                         <p className='eventDetailLabels fw-bold'>Event Description</p>
                         <p className='eventDescriptionBox'>{gameEvent.eventDescription}</p>
                     </div>

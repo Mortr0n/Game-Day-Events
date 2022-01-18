@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { format } from 'date-fns';
 
 const EventForm = (props) => {
     // worlds longest line ahead...LOOKOUT!
@@ -144,7 +145,7 @@ const EventForm = (props) => {
             </div>
                 <button 
                 type="submit"
-                className='btn btn-primary' >Create Event</button>
+                className='btn btn-primary' >Submit</button>
             </form>
         </div>
     )

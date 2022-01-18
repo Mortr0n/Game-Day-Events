@@ -51,8 +51,8 @@ module.exports = {
 
     deleteOneEvent: (req, res) => {
         Event.findByIdAndDelete({ _id: req.params.id })
-            .then((deltedEvent) => {
-                console.log(`Deleted Event ${deletedEvent}`);
+            .then((deletedEvent) => {
+                console.log(deletedEvent);
                 res.json(deletedEvent);
             })
             .catch((err) => res.status(400).json(err));
