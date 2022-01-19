@@ -19,7 +19,7 @@
 }
 
 .eventDetailsTop {
-  background-image: url('../src/images/banner.jpg');
+  background-image: url('../src/assets/banner.jpg');
   background-size: 1320px 200px;
   border-radius: 10px;
   border-bottom: 5px solid darkblue;
