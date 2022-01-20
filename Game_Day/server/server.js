@@ -20,6 +20,6 @@ require('./config/mongoose.config');
 require('./routes/event.routes')(app);
 require('./routes/user.routes')(app);
 
-
+ 
 const port = process.env.MY_PORT;
 app.listen(port, ()=>{console.log(`Listening at Port ${port}`)});
