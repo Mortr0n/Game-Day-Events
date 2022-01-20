@@ -1,5 +1,6 @@
 const User = require('../models/user.model');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 module.exports = {
 
@@ -11,7 +12,8 @@ module.exports = {
                 }, process.env.JWT_SECRET);
                 // original way before JWT cookie
                 // res.json({ msg: "success!", user: user });
-                res.cookie("usertoken", userToken, secret, {
+                // Make sure the third item points to the secret KEY!!!!
+                res.cookie("usertoken", userToken, process.env.JWT_SECRET, {
                     httpOnly: true
                 })
                 .json({ msg: "Success!", user: user });
@@ -47,7 +49,8 @@ module.exports = {
         }, process.env.JWT_SECRET);
 
         // note that the response object allows chained calls to cookie and json
-        res.cookie("usertoken", userToken, secret, {
+        res.cookie("usertoken", userToken, process.env.JWT_SECRET, 
+        {
             httpOnly: true, //can only be passed using http requests
             expires: new Date(Date.now() + 90000000) //expiration set
         }).json({
@@ -57,10 +60,19 @@ module.exports = {
     
     logout: (req, res) => {
         console.log("logging out")
-        res.clearCookie('usertoken');
+        res.clearCookie('usertoken'); // same name as above for saving the cookie
         res.sendStatus(200).json({
             msg: "You have successfully logged out!"
         });
+    },
+    // FIXME: Remove this before going live
+    getAll: (req, res) => {
+        User.find()
+            .then((allUsers) => {
+                console.log(allUsers);
+                res.json(allUsers);
+            })
+            .catch((err) => res.status(400).json(err));
     },
 
 }
