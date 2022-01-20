@@ -6,6 +6,7 @@ import CreateEvent from './views/CreateEvent';
 import EventList from './views/EventList';
 import EventDetails from './views/EventDetails';
 import EditEvent from './views/EditEvent';
+import LogReg from './views/LogReg';
 
 function App() {
   const [ gameEvents, setGameEvents ] = useState([]);
@@ -14,7 +15,8 @@ function App() {
     <div className="App">
       <Router>
         {/* TODO: when login/reg complete remove the default from here */}
-        <Main default path="/events"/>
+        <LogReg path="/events" />
+        <Main path="/events/home"/>
         <CreateEvent path="/events/new" gameEvents={gameEvents} setGameEvents={setGameEvents}/>
         <EventList path="/events/list" gameEvents={gameEvents} setGameEvents={setGameEvents} />
         <EventDetails path="/events/:id" />
