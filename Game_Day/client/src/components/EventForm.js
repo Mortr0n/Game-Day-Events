@@ -13,6 +13,7 @@ const EventForm = (props) => {
     const [ date, setDate ] = useState(initialDate);
     const [ suggestedGame, setSuggestedGame ] = useState(initialSuggestedGame);
     const [ eventDescription, setEventDescription ] = useState(initialEventDescription);
+    // for select in form.
     const allStates = [
         "AK", "AL", "AR", "AS", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "GU", "HI", 
         "IA", "ID", "IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MP", 
@@ -66,13 +67,13 @@ const EventForm = (props) => {
                         onChange={(e => setCity(e.target.value))} />
                         <label htmlFor='city' className='form-label'>City</label>
                     </div>
-
                     {/* State drop down */}
                     <div className='form-floating'>
                         <select
                         className='form-select'
                         onChange={(e => setState(e.target.value))}
                         >
+                            {/* TODO: make the current state selected for updating */}
                             <option value={state}>Select Your State</option>
                             {
                                 allStates.map((state, index) => {
@@ -82,16 +83,9 @@ const EventForm = (props) => {
                                 })
                             }
                         </select>
-{/* 
-                        <input
-                        type="text"
-                        className='form-control mb-2'
-                        value={state}
-                        onChange={(e => setState(e.target.value))} /> */}
+
                         <label htmlFor='state' className='form-label'>State</label>
                     </div>
-
-
 
 
                     </div>

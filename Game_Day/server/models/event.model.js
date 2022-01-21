@@ -80,7 +80,7 @@ const EventSchema = new mongoose.Schema({
         type: String,
         required: [true, "You must provide an event description"],
         minLength: [5, "Description must be at least 5 characters long"],
-        maxLength: [500, "Descrtiption must be less than 501 characters"]
+        maxLength: [500, "Description must be less than 501 characters"]
     },
 
 }, {timestamps: true});

@@ -14,7 +14,6 @@ function App() {
   return (
     <div className="App">
       <Router>
-        {/* TODO: when login/reg complete remove the default from here */}
         <LogReg path="/events" />
         <Main path="/events/home"/>
         <CreateEvent path="/events/new" gameEvents={gameEvents} setGameEvents={setGameEvents}/>
