@@ -1,38 +1,44 @@
-import React from 'react';
+import React from "react";
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import { Link } from '@reach/router';
+import Arrows from '../assets/Arrows.png';
 
-
-const NavBar = () => {
-    
-
-
-
-    return(
-        <Navbar bg="primary" expand="lg">
-            <Container>
+const NewNav = () => {
+    return (
+    <section class="navbar-area navbar-one">
+        <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+            <nav class="navbar navbar-expand-lg">
+                <ul class="navbar-nav m-auto">
+                <li className="nav-item mt-3">
+                    <img className="mt-2" src={Arrows} alt="Arrows Swirling" />
+                </li>
                 <Link to={'/events'} className='m-auto'>
-                    <Navbar.Brand >
-                        Game Day Events
-                    </Navbar.Brand>
-                </Link>
                     
-                <Nav variant="pills" className="m-auto">
-                    <Link className='navLinks' to={'/events'}>
-                        <Navbar.Brand >Home</Navbar.Brand>
-                    </Link>
-                    <Link className='navLinks' to={'/events/new'}>
-                        <Navbar.Brand >New</Navbar.Brand>
-                    </Link>
-                    <Link className='navLinks' to={'/events/list'}>
-                        <Navbar.Brand >Events</Navbar.Brand>
-                    </Link>
-                    <Link className='navLinks' to={`/user/detail/:userIDHere`}>
-                        <Navbar.Brand >Account</Navbar.Brand>
-                    </Link>
-                </Nav>
-            </Container>
-        </Navbar>
-    )
-}
-export default NavBar;
+                    <li >
+                        <Navbar.Brand id="gameDayNav">Game Day</Navbar.Brand>
+                    </li>
+                </Link>
+                    <li className="nav-item">
+                        <Link to={'/events/home'}>Home</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to={'/events/new'}>New</Link>
+                    </li>
+                    <li className="nav-item">
+                    <Link to={'/events/list'}>Events</Link>
+                    </li>
+                    <li className="nav-item">
+                    <Link to={'/user/id'}>Account</Link>
+                    </li>
+                </ul>
+            </nav>
+            </div>
+        </div>
+        </div>
+    </section>
+    );
+};
+
+export default NewNav;

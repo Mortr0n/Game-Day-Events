@@ -24,7 +24,20 @@ const CreateEvent = (props) => {
     return(
         <div className='createEvent'>
             <NavBar />
-            <h1 className='pageTitle'>New Event</h1>
+            <div class="section-title-four">
+            <div class="container">
+                <div class="row mt-5">
+                    <div class="col-12">
+                        <div class="content">
+                        <span> New Event</span>
+                        <h2 class="fw-bold">Create a New Event</h2>
+                        <h3 class="gray-bg">NEW</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            {/* <h1 className='pageTitle'>New Event</h1> */}
             {/* Setting initial values for the form since it will be used for 
             both create and update */}
             

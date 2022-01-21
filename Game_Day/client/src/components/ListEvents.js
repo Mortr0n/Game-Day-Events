@@ -6,7 +6,7 @@ const EventList = (props) => {
     const { gameEvents, setGameEvents } = props;
 
     return(
-        <div className='col-8 offset-2 '>
+        <div className='col-8 offset-2'>
             <table className='eventTable table table-striped table-hover table-primary'>
                 <thead>
                     <tr>
@@ -18,11 +18,11 @@ const EventList = (props) => {
                         <th>Actions</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody className='border-light'>
                     {
                         gameEvents.map((gameEvent) => {
                             return(
-                                <tr className='gameEventContainer border-warning' key={gameEvent._id}>
+                                <tr className='gameEventContainer border-light' key={gameEvent._id}>
                                     <td>
                                         <Link to={`/events/${gameEvent._id}`} >
                                             {gameEvent.eventName}

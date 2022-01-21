@@ -5,8 +5,15 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
+
 ReactDOM.render(
   <React.StrictMode>
+    <link rel="stylesheet" href="https://cdn.ayroui.com/1.0/css/bootstrap.min.css" />
+    {/* <!--====== Lineicons CSS ======--> */}
+    <link href="https://cdn.lineicons.com/3.0/lineicons.css" rel="stylesheet" />
+
+    {/* <!--====== Style css ======--> */}
+    <link rel="stylesheet" href="https://cdn.ayroui.com/1.0/css/starter.css" />
     <App />
   </React.StrictMode>,
   document.getElementById('root')

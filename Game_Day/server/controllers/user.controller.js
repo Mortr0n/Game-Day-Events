@@ -21,33 +21,28 @@ module.exports = {
             .catch((err) => res.status(400).json(err));
     },
 
-    // TODO: Platform way below!  If it doesn't work try video way!
+    // Platform way below!  If it doesn't work try video way!
     login: async(req, res) => {
         const user = await User.findOne({ email: req.body.email });
-
         if(user === null) {
             // email not found in users collection
             return res.status(400).json({
                 msg: "invalid login attempt"
             });
         }
-
         // Found a user with this email address
         // compare supplied pw with the hashed pw in the DB
         const correctPassword = await bcrypt.compare(req.body.password, user.password);
-
         if(!correctPassword) {
             // password was not a match!
             return res.status(400).json({
                 msg: "passwords do not match!"
             });
         }
-
         // if we made it this far, the pw was correct
         const userToken = jwt.sign({
             id: user._id
         }, process.env.JWT_SECRET);
-
         // note that the response object allows chained calls to cookie and json
         res.cookie("usertoken", userToken, process.env.JWT_SECRET, 
         {
@@ -65,6 +60,7 @@ module.exports = {
             msg: "You have successfully logged out!"
         });
     },
+    
     // FIXME: Remove this before going live
     getAll: (req, res) => {
         User.find()
