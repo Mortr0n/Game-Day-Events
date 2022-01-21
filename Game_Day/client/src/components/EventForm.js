@@ -87,7 +87,6 @@ const EventForm = (props) => {
                         <label htmlFor='state' className='form-label'>State</label>
                     </div>
 
-
                     </div>
                     <div className='col-4'>
                     <div className='form-floating'>
