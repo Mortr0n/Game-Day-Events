@@ -52,9 +52,9 @@ const NewNav = () => {
                     <ul>
                         <li>
                             <Link to={'/logout'}>
-                                <a type="submit" className="btn primary-btn-outline" onClick={(e) => logout(e)}>
+                                <button type="submit" className="btn primary-btn-outline " onClick={(e) => logout(e)}>
                                     Logout
-                                </a>
+                                </button>
                             </Link>
                         </li>
                         

@@ -4,16 +4,16 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import '../src/css/starter.css';
+
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <link rel="stylesheet" href="https://cdn.ayroui.com/1.0/css/bootstrap.min.css" />
+{/* May be able to remove this now */}
     {/* <!--====== Lineicons CSS ======--> */}
-    <link href="https://cdn.lineicons.com/3.0/lineicons.css" rel="stylesheet" />
+    {/* <link href="https://cdn.lineicons.com/3.0/lineicons.css" rel="stylesheet" /> */}
 
-    {/* <!--====== Style css ======--> */}
-    <link rel="stylesheet" href="https://cdn.ayroui.com/1.0/css/starter.css" />
     <App />
   </React.StrictMode>,
   document.getElementById('root')

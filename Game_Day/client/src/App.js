@@ -15,7 +15,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <LogReg path="/events" />
+        <LogReg default path="/events" />
         <Main path="/events/home" user={user} setUser={setUser} />
         <CreateEvent path="/events/new" gameEvents={gameEvents} setGameEvents={setGameEvents}/>
         <EventList path="/events/list" gameEvents={gameEvents} setGameEvents={setGameEvents} />

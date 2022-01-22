@@ -9,7 +9,10 @@ const CreateEvent = (props) => {
 
     // take in new game event object and post to api logging the result or error
     const createEventHandler = (gameEvent) => {
-        axios.post('http://localhost:8000/api/events', gameEvent)
+        axios.post('http://localhost:8000/api/events', gameEvent,
+        {
+            withCredentials: true,
+        })            
             .then((res) => {
                 console.log(res.data);
                 // add event to the gameEvents array
@@ -18,6 +21,7 @@ const CreateEvent = (props) => {
             })
             .catch((err) => {
                 if(err.response.status === 401) {
+                    console.log(err.response);
                     navigate('/events')
                 } 
                 console.log(err.response);

@@ -92,18 +92,7 @@
   pointer-events: none;
 }
 
-/*===========================
-  NAVBAR css 
-===========================*/
-.navbar-toggler:focus {
-  box-shadow: none;
-}
-
-.mb-100 {
-  margin-bottom: 100px;
-}
-
-/*===== NAVBAR ONE =====*/
+/*===== MY NAVBAR ONE =====*/
 .navbar-one {
   background: var(--primary);
 }
@@ -116,38 +105,7 @@
   position: relative;
   padding: 0;
 }
-.navbar-one .navbar .navbar-toggler .toggler-icon {
-  width: 30px;
-  height: 2px;
-  background-color: var(--white);
-  margin: 5px 0;
-  display: block;
-  position: relative;
-  -webkit-transition: all 0.3s ease-out 0s;
-  -moz-transition: all 0.3s ease-out 0s;
-  -ms-transition: all 0.3s ease-out 0s;
-  -o-transition: all 0.3s ease-out 0s;
-  transition: all 0.3s ease-out 0s;
-}
-.navbar-one .navbar .navbar-toggler.active .toggler-icon:nth-of-type(1) {
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  -o-transform: rotate(45deg);
-  transform: rotate(45deg);
-  top: 7px;
-}
-.navbar-one .navbar .navbar-toggler.active .toggler-icon:nth-of-type(2) {
-  opacity: 0;
-}
-.navbar-one .navbar .navbar-toggler.active .toggler-icon:nth-of-type(3) {
-  -webkit-transform: rotate(135deg);
-  -moz-transform: rotate(135deg);
-  -ms-transform: rotate(135deg);
-  -o-transform: rotate(135deg);
-  transform: rotate(135deg);
-  top: -7px;
-}
+
 @media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
   .navbar-one .navbar .navbar-collapse {
     position: absolute;
@@ -423,25 +381,25 @@
   display: inline-block;
   margin-right: 12px;
 }
-.navbar-one .navbar .navbar-btn ul li a {
+.navbar-one .navbar .navbar-btn ul li button {
   font-weight: 600;
   text-transform: capitalize;
   letter-spacing: 0;
 }
-.navbar-one .navbar .navbar-btn ul li a.primary-btn-outline {
+.navbar-one .navbar .navbar-btn ul li button.primary-btn-outline {
   border-color: var(--white);
   color: var(--white);
 }
-.navbar-one .navbar .navbar-btn ul li a.primary-btn-outline:hover {
+.navbar-one .navbar .navbar-btn ul li button.primary-btn-outline:hover {
   background-color: var(--white);
   color: var(--primary);
 }
-.navbar-one .navbar .navbar-btn ul li a.primary-btn {
+.navbar-one .navbar .navbar-btn ul li button.primary-btn {
   background-color: var(--white);
   color: var(--primary);
   border-color: var(--white);
 }
-.navbar-one .navbar .navbar-btn ul li a.primary-btn:hover {
+.navbar-one .navbar .navbar-btn ul li button.primary-btn:hover {
   background-color: transparent;
   color: var(--white);
 }

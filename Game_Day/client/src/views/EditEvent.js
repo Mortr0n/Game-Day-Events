@@ -36,7 +36,10 @@ const EditEvent = (props) => {
     }, [])
 
     const updateEventHandler = (gameEvent) => {
-        axios.put(`http://localhost:8000/api/events/${id}`, gameEvent)
+        axios.put(`http://localhost:8000/api/events/${id}`, gameEvent,
+        {
+            withCredentials: true,
+        })
             .then((res) => {
                 navigate(`/events/${id}`)
             })
