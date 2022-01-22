@@ -90,7 +90,7 @@ textarea:focus,
 button:hover,
 button:focus {
     text-decoration: none;
-    outline: white;
+    outline: blue;
 }
 
 ul,

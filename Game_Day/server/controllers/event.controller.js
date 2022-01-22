@@ -1,5 +1,6 @@
 const { response } = require('express');
 const Event = require('../models/event.model');
+const jwt = require('jsonwebtoken');
 
 
 module.exports = {
@@ -9,9 +10,15 @@ module.exports = {
     },
 
     createEvent: (req, res) => {
-        // const event = new Event(req.body);
-
-        Event.create(req.body)
+        // create event using the req.body from the post
+        const event = new Event(req.body);
+        // decoding the JWT so that I can get access to the user info
+        const decodedJWT = jwt.decode(req.cookies.usertoken, 
+            { complete: true });
+        // assign the userId from event model to the decoded user_id from the cookie
+        event.userId = decodedJWT.payload.user_id;
+        // pass in the new event instead of the req.body
+        Event.create(event)
             .then((newEvent) => {
                 console.log(`Created Event ${newEvent}`);
                 res.json(newEvent);
@@ -32,6 +39,8 @@ module.exports = {
 
     getOneEvent: (req, res) => {
         Event.findOne({ _id: req.params.id })
+        // use populate to grab the user from the id removing the id which is normally given
+            .populate("userId", "firstName lastName email")
             .then((foundEvent) => {
                 console.log(`Found Event ${foundEvent}`);
                 res.json(foundEvent);

@@ -83,7 +83,7 @@ const EventSchema = new mongoose.Schema({
         maxLength: [500, "Description must be less than 501 characters"]
     },
     // add the user id for the user creating each event
-    user_id: {
+    userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
     }

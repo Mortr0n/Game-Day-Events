@@ -32,6 +32,14 @@ const EventDetails = (props) => {
             
                 <div className='row eventDetailsTop mt-2'>
                     <h2 className='pageTitle'>{gameEvent.eventName}</h2>
+                    {
+                        gameEvent.userId &&
+                        <div>
+                            <p className='eventDetailLabels fw-bold'>Event Host: {gameEvent.userId.firstName} {gameEvent.userId.lastName}</p>
+                            <p className=''>Contact at: {gameEvent.userId.email}</p>
+                        </div>
+                    }
+                    
                     <div className='col-3 offset-2'>
                         <p className='eventHeaders'>Event Date</p>
                         <p className='eventHeaders'>Attending</p>
@@ -45,18 +53,23 @@ const EventDetails = (props) => {
                     </div>
                 </div>
                 <div className='row'>
-                    <div className='col-3 offset-2'>
+                    <div className='col-1'>
+                    <Link className='removeTextDecoration' to={`/events/${id}/edit`}><button className='btn btn-primary mb-3 mt-3 '>Edit</button></Link>
+                    <DeleteButton id={id} successCallback={() => navigate('/events/list')} />
+                    </div>
+                    <div className='col-3 offset-1'>
                         {/* TODO: Edit Button needs replaced with real thing */}
-                        <Link className='removeTextDecoration' to={`/events/${id}/edit`}><button className='btn btn-success '>Edit</button></Link>
+                        
                         <p className='eventDetailLabels fw-bold'>Event Location</p>
                         <div className='featuredEventsBox mb-5'>
                             <p className='eventDetailLabels fw-bold'>Featured Events</p>
                             <p className='eventDetailLabels'>{gameEvent.suggestedGame}</p>
                         </div>
+                        
                     </div>
                     <div className='col-6'>
                         {/* TODO: Replace Delete With Real Thing */}
-                        <DeleteButton id={id} successCallback={() => navigate('/events/list')} />
+                        
                         <p className='eventDetailLabels'>{gameEvent.streetAddress}</p>
                         <p className='eventDetailLabels'>{gameEvent.city}, {gameEvent.state}  {gameEvent.zip}</p>
                         <p className='eventDetailLabels fw-bold'>Event Description</p>
@@ -64,7 +77,7 @@ const EventDetails = (props) => {
                     </div>
                 </div>
                 <div className='row text-start'>
-                    <p className='eventDetailLabels fst-italic'>Leave a comment</p>
+                    <p className='eventDetailLabels fst-italic'>Comments</p>
                     <textarea className='form-control' rows="4" cols="50"></textarea>
                 </div>
             </div>

@@ -6,7 +6,9 @@ const DeleteButton = (props) => {
     const { id, successCallback } = props;
 
     const deleteEvent = (e) => {
-        axios.delete(`http://localhost:8000/api/events/${id}`)
+        axios.delete(`http://localhost:8000/api/events/${id}`, {
+            withCredentials: true,
+        })
             .then((res) => {
                 console.log(res.data);
                 successCallback();
