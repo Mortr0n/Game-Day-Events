@@ -17,6 +17,9 @@ const CreateEvent = (props) => {
                 navigate('/events/list')
             })
             .catch((err) => {
+                if(err.response.status === 401) {
+                    navigate('/events')
+                } 
                 console.log(err.response);
             })
     }
@@ -24,14 +27,14 @@ const CreateEvent = (props) => {
     return(
         <div className='createEvent'>
             <NavBar />
-            <div class="section-title-four">
-            <div class="container">
-                <div class="row mt-5">
-                    <div class="col-12">
-                        <div class="content">
+            <div className="section-title-four">
+            <div className="container">
+                <div className="row mt-5">
+                    <div className="col-12">
+                        <div className="content">
                         <span> New Event</span>
-                        <h2 class="fw-bold">Create a New Event</h2>
-                        <h3 class="gray-bg">NEW</h3>
+                        <h2 className="fw-bold">Create a New Event</h2>
+                        <h3 className="gray-bg">NEW</h3>
                         </div>
                     </div>
                 </div>

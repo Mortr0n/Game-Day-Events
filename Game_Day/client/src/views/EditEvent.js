@@ -41,6 +41,9 @@ const EditEvent = (props) => {
                 navigate(`/events/${id}`)
             })
             .catch((err) => {
+                if(err.response.status === 401) {
+                    navigate('/events')
+                } 
                 console.log(err.response);
             });
     }

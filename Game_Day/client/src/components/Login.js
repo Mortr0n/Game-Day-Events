@@ -3,8 +3,10 @@ import axios from 'axios';
 import { navigate } from '@reach/router';
 
 const Login = (props) => {
+    const { firstName, setFirstName } = props;
     const [ email, setEmail ] = useState("");
     const [ password, setPassword ] = useState("");
+    
 
     const loginHandler = (e) => {
         e.preventDefault();
@@ -17,10 +19,13 @@ const Login = (props) => {
         })
         .then((res) => {
             console.log(res.data);
+            console.log(res.userFirstName)
+            // setFirstName(res.userFirstName);
             navigate('/events/home');
         })
         .catch((err) => {
             console.log(err.response);
+            console.log("problem")
             // TODO: Need Validations! setErrorMessage
         })
     }

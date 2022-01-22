@@ -10,12 +10,13 @@ import LogReg from './views/LogReg';
 
 function App() {
   const [ gameEvents, setGameEvents ] = useState([]);
+  const [ user, setUser ] = useState({});
 
   return (
     <div className="App">
       <Router>
         <LogReg path="/events" />
-        <Main path="/events/home"/>
+        <Main path="/events/home" user={user} setUser={setUser} />
         <CreateEvent path="/events/new" gameEvents={gameEvents} setGameEvents={setGameEvents}/>
         <EventList path="/events/list" gameEvents={gameEvents} setGameEvents={setGameEvents} />
         <EventDetails path="/events/:id" />

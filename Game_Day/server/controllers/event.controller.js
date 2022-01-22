@@ -3,11 +3,14 @@ const Event = require('../models/event.model');
 
 
 module.exports = {
+    // FIXME: remove this later
     index: (req, res) => {
         res.json({ message: "Howdy"});
     },
 
     createEvent: (req, res) => {
+        // const event = new Event(req.body);
+
         Event.create(req.body)
             .then((newEvent) => {
                 console.log(`Created Event ${newEvent}`);

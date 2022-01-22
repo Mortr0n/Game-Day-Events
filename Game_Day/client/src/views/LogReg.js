@@ -2,8 +2,8 @@ import React from 'react';
 import Login from '../components/Login';
 import Register from './Register';
 
-const LogReg = () => {
-
+const LogReg = (props) => {
+    const {firstName, setFirstName } = props;
 
     return(
         <div className='row'>
@@ -13,7 +13,7 @@ const LogReg = () => {
                 <Register />
             </div>
             <div className='col-5 mt-5'>
-                <Login />
+                <Login firstName={firstName} setFirstName={setFirstName} />
             </div>
             
             

@@ -1,5 +1,6 @@
 import React from "react";
 import axios from 'axios';
+import { navigate } from "@reach/router";
 
 const DeleteButton = (props) => {
     const { id, successCallback } = props;
@@ -10,7 +11,12 @@ const DeleteButton = (props) => {
                 console.log(res.data);
                 successCallback();
             })
-            .catch((err) => console.log(err.response));
+            .catch((err) =>  {
+                if(err.response.status === 401) {
+                    navigate('/events')
+                } 
+                console.log(err.response);
+            });
     }
 
     return(

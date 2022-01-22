@@ -1,8 +1,9 @@
+// middleware for checking if user is logged in
 const jwt = require("jsonwebtoken");
 
 module.exports.secret = process.env.JWT_SECRET
 module.exports.authenticate = (req, res, next) => {
-    jwt.verify(req.cookies.usertoken, secret, 
+    jwt.verify(req.cookies.usertoken, process.env.JWT_SECRET, 
         // once we compare the unhashed version of the cookie, run this callback function
         (err, payload) => {
         if(err) {

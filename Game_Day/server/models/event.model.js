@@ -82,6 +82,12 @@ const EventSchema = new mongoose.Schema({
         minLength: [5, "Description must be at least 5 characters long"],
         maxLength: [500, "Description must be less than 501 characters"]
     },
+    // add the user id for the user creating each event
+    user_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+    }
+
 
 }, {timestamps: true});
 
