@@ -20,6 +20,7 @@ app.use(cookieParser());
 require('./config/mongoose.config');
 require('./routes/user.routes')(app);
 require('./routes/event.routes')(app);
+require('./routes/comment.routes')(app);
 
 
 

@@ -86,8 +86,16 @@ const EventSchema = new mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
-    }
-
+    },
+    
+    comments: [
+        // each element in array refers to a comment model/object/document
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Comment",
+        }
+    ],
+    
 
 }, {timestamps: true});
 

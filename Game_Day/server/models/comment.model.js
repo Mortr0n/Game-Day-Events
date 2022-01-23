@@ -24,6 +24,12 @@ const CommentSchema = new mongoose.Schema({
         }
     },
 
+    event: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: [true, "Must add movie ID"],
+        ref: "Event",
+    },
+
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
