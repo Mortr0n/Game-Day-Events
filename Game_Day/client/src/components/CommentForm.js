@@ -4,19 +4,24 @@ import React, { useState } from 'react';
 
 
 const CommentForm = (props) => {
-    const { initialComment, comments, setComments } = props;
+    const { initialComment, comments, setComments, eventId } = props;
     const [ comment, setComment ] = useState(initialComment);
 
     const addComment = (e) => {
         e.preventDefault();
+        const commentData = {
+            comment: comment,
+            event: eventId
+        }
         console.log(comment)
-        axios.post('http://localhost:8000/api/comments', comment,
+        axios.post('http://localhost:8000/api/comments', commentData,
         {
             withCredentials: true,
         })
             .then((res) => {
                 setComments([...comments, res.data])
                 console.log(res.data);
+                setComment("");
             })
             .catch((err) => {
                 console.log(err);

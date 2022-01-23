@@ -20,10 +20,10 @@ const EventDetails = (props) => {
                 console.log(res.data);
                 setGameEvent(res.data);
                 setLoaded(true);    
-                setComments(gameEvent.comments)            
+                // setComments(gameEvent.comments)            
             })
             .catch((err) => console.log(err))
-    }, [])
+    }, [comments])
 
 
 
@@ -88,23 +88,13 @@ const EventDetails = (props) => {
                         gameEvent.comments &&
                         gameEvent.comments.slice(0).reverse().map((thisComment) => {
                             return(
-                            <p className='thisComment ms-5 mb-2' key={thisComment._id}>
-                                {thisComment.userId.firstName} - 
-                            {format(new Date(thisComment.createdAt), 'MMMM-dd-hh:mm')} :   {thisComment.comment}
-                            </p>
+                            <div className='thisComment ms-5 mb-2' key={thisComment._id}>
+                                <span className='bold italic blue'>{thisComment.userId.firstName}</span> -  
+                            <span className='bold'>{format(new Date(thisComment.createdAt), ' MMMM-dd-hh:mm')}</span> -- {thisComment.comment}
+                            </div>
                             )
                         })
                     }
-                    {/* {
-                        comments &&
-                        comments.map((aComment) => {
-                            return(
-                                <div key={comment._id}>
-                                    {aComment.comment}
-                                </div>
-                            )
-                        })
-                    } */}
                     </div>
                 </div>
             </div>
@@ -112,7 +102,7 @@ const EventDetails = (props) => {
             }
             {
                 loaded &&
-                <CommentForm initialComment="" comments={comments} setComments={setComments} />
+                <CommentForm eventId={gameEvent._id} initialComment="" comments={comments} setComments={setComments} />
             }
             
 

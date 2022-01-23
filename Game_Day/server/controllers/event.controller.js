@@ -40,8 +40,7 @@ module.exports = {
 
     getOneEvent: (req, res) => {
         Event.findOne({ _id: req.params.id })
-        // use populate to grab the user from the id removing the id which is normally given
-            
+        // use populate to grab the user from the id and the comments for the event            
             .populate({path: "comments",
                 model: "Comment",
                 populate: {
@@ -49,8 +48,6 @@ module.exports = {
                     model: "User"
                 }
             })
-            // .populate("comments.userId", "-__v")
-            // .populate("userId", "firstName lastName email")
             .sort({createdAt: "descending"})
             .then((foundEvent) => {
                 console.log(`Found Event ${foundEvent}`);

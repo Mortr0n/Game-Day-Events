@@ -70,6 +70,18 @@
   scrollbar-track-color: rgb(49, 108, 236);
 }
 
+.bold {
+  font-weight: 900;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.blue {
+  color: blue;
+}
+
 .commentsBox::-webkit-scrollbar {
   width: 30px;            
 }

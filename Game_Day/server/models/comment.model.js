@@ -26,7 +26,7 @@ const CommentSchema = new mongoose.Schema({
 
     event: {
         type: mongoose.Schema.Types.ObjectId,
-        required: [true, "Must add movie ID"],
+        required: [true, "Must add event ID"],
         ref: "Event",
     },
 

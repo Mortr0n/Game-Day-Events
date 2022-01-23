@@ -28,8 +28,16 @@ module.exports = {
                         useFindAndModify: false // mongoose replaces the entire object by default.  Overriding this here.
                     },
                 )
-                    .populate("comments", "-__v -updatedAt")
-                    .populate("userId", "-_id")
+                    // specify which information to include
+                    .populate({
+                        path: "comments",
+                        model: "Comment",
+                        populate: {
+                            path: "userId",
+                            model: "User",
+                            select: "firstName lastName email" 
+                        }
+                    })
                     .then((updatedEvent) => {
                         console.log(`Updated Event ${updatedEvent}`);
                         // res.json(newComment);
