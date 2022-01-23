@@ -1,15 +1,32 @@
+import { navigate } from '@reach/router';
+import axios from 'axios';
 import React, { useState } from 'react';
 
 
 const CommentForm = (props) => {
-    const { initialComment } = props;
+    const { initialComment, comments, setComments } = props;
     const [ comment, setComment ] = useState(initialComment);
 
+    const addComment = (e) => {
+        e.preventDefault();
+        console.log(comment)
+        axios.post('http://localhost:8000/api/comments', comment,
+        {
+            withCredentials: true,
+        })
+            .then((res) => {
+                setComments([...comments, res.data])
+                console.log(res.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }
 
     return(
         // TODO: Get comments Working
         <div className='form-group container text-start'>
-            <form>
+            <form onSubmit={addComment}>
                 <label className='mb-2 eventDetailLabels' htmlFor='comment'>Add a Comment</label>
                 <input
                 type="text"

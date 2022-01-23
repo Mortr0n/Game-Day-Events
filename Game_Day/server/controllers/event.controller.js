@@ -1,6 +1,7 @@
 const { response } = require('express');
 const Event = require('../models/event.model');
 const jwt = require('jsonwebtoken');
+const { populate } = require('../models/event.model');
 
 
 module.exports = {
@@ -40,7 +41,17 @@ module.exports = {
     getOneEvent: (req, res) => {
         Event.findOne({ _id: req.params.id })
         // use populate to grab the user from the id removing the id which is normally given
-            .populate("userId", "firstName lastName email")
+            
+            .populate({path: "comments",
+                model: "Comment",
+                populate: {
+                    path: "userId",
+                    model: "User"
+                }
+            })
+            // .populate("comments.userId", "-__v")
+            // .populate("userId", "firstName lastName email")
+            .sort({createdAt: "descending"})
             .then((foundEvent) => {
                 console.log(`Found Event ${foundEvent}`);
                 res.json(foundEvent);

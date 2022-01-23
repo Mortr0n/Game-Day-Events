@@ -10,7 +10,6 @@ module.exports = {
         // decoding cookie to attach userId to the comment
         const decodedJWT = jwt.decode(req.cookies.usertoken,
             {complete: true});
-        console.log(decodedJWT);
         // attaching the userId to the comment
         comment.userId = decodedJWT.payload.user_id;
         // add comment to the collection
@@ -29,7 +28,8 @@ module.exports = {
                         useFindAndModify: false // mongoose replaces the entire object by default.  Overriding this here.
                     },
                 )
-                    .populate("comments", "-__v")
+                    .populate("comments", "-__v -updatedAt")
+                    .populate("userId", "-_id")
                     .then((updatedEvent) => {
                         console.log(`Updated Event ${updatedEvent}`);
                         // res.json(newComment);
@@ -51,8 +51,9 @@ module.exports = {
 
     getAllComments: (req, res) => {
         Comment.find()
-            // sorting the comments we find 
-            .sort({commentDate : "descending"})
+            // Sorting and adding the items we need         
+            .sort({createdAt : "descending"})
+            .populate("userId", "firstName lastName email -_id")            
             .then((allComments) => {
                 console.log(`Comment List : ${allComments}`);
                 res.json(allComments);

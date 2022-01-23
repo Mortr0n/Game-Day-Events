@@ -62,6 +62,34 @@
   color: white;
 }
 
+.commentsBox {
+  border: 5px solid rgb(49, 108, 236);
+  border-radius: 5px;
+  height: 200px;
+  overflow-y: auto;
+  scrollbar-track-color: rgb(49, 108, 236);
+}
+
+.commentsBox::-webkit-scrollbar {
+  width: 30px;            
+}
+
+.commentsBox::-webkit-scrollbar-track {
+  background: rgb(49, 108, 236);      /* color of the tracking area */
+}
+
+.commentsBox::-webkit-scrollbar-thumb {
+  background-color: white;   
+  border-radius: 10px;
+  border: 5px solid rgb(49, 108, 236);  /* creates padding around scroll thumb */
+}
+
+.thisComment {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 20px;
+}
+
+
 /* ===== Buttons Css ===== */
 .primary-btn {
   background: var(--primary);

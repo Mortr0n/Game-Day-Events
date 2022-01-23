@@ -12,16 +12,20 @@ const EventDetails = (props) => {
     const [ gameEvent, setGameEvent ] = useState();
     const [ loaded, setLoaded ] = useState(false);
     const [ eventDate, setEventDate] = useState("")
+    const [ comments, setComments ] = useState([]);
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/events/${id}`)
             .then((res) => {
                 console.log(res.data);
                 setGameEvent(res.data);
-                setLoaded(true);
+                setLoaded(true);    
+                setComments(gameEvent.comments)            
             })
             .catch((err) => console.log(err))
     }, [])
+
+
 
     return(
         <div>
@@ -78,14 +82,37 @@ const EventDetails = (props) => {
                 </div>
                 <div className='row text-start'>
                     <p className='eventDetailLabels fst-italic'>Comments</p>
-                    <textarea className='form-control' rows="4" cols="50"></textarea>
+                    <div className='commentsBox justify-content-center '>
+                    {
+                        // making sure there are comments and then reversing order to newest first
+                        gameEvent.comments &&
+                        gameEvent.comments.slice(0).reverse().map((thisComment) => {
+                            return(
+                            <p className='thisComment ms-5 mb-2' key={thisComment._id}>
+                                {thisComment.userId.firstName} - 
+                            {format(new Date(thisComment.createdAt), 'MMMM-dd-hh:mm')} :   {thisComment.comment}
+                            </p>
+                            )
+                        })
+                    }
+                    {/* {
+                        comments &&
+                        comments.map((aComment) => {
+                            return(
+                                <div key={comment._id}>
+                                    {aComment.comment}
+                                </div>
+                            )
+                        })
+                    } */}
+                    </div>
                 </div>
             </div>
             
             }
             {
                 loaded &&
-                <CommentForm initialComment={initialComment} />
+                <CommentForm initialComment="" comments={comments} setComments={setComments} />
             }
             
 
