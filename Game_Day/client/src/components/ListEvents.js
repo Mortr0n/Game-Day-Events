@@ -1,6 +1,7 @@
 import React from 'react';
-import { Link } from '@reach/router';
+import { Link, navigate } from '@reach/router';
 import { format } from 'date-fns';
+import JoinEventButton from './JoinEventButton';
 
 const EventList = (props) => {
     const { gameEvents, setGameEvents } = props;
@@ -32,7 +33,7 @@ const EventList = (props) => {
                                     <td>{gameEvent.attendeeMax}</td>
                                     <td>{format(new Date(gameEvent.date), 'MMMM-dd-yyyy')}</td>
                                     <td>{gameEvent.suggestedGame}</td>
-                                    <td>JOIN</td>
+                                    <td><JoinEventButton id={gameEvent._id} successCallback={() => navigate(`/events/${gameEvent._id}`)} /> </td>
                                 </tr>
                             )
                         })

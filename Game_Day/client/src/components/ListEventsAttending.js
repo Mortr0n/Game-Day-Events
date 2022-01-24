@@ -21,7 +21,7 @@ const ListEventsAttending = (props) => {
     }, [])
 
     return(
-        <div >
+        <>
             <h4>Future Events Attending</h4> 
             <table className='eventTable table table-secondary table-striped table-hover'>
                 <thead>
@@ -54,7 +54,7 @@ const ListEventsAttending = (props) => {
                 </tbody>
             </table>
                 
-        </div>
+        </>
     )
 }
 export default ListEventsAttending;
