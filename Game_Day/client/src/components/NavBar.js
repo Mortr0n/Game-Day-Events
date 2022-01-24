@@ -41,10 +41,10 @@ const NewNav = () => {
                         <Link to={'/events/new'}>New</Link>
                     </li>
                     <li className="nav-item">
-                    <Link to={'/events/list'}>Events</Link>
+                        <Link to={'/events/list'}>Events</Link>
                     </li>
                     <li className="nav-item">
-                    <Link to={'/user/id'}>Account</Link>
+                        <Link to={'/user'}>Account</Link>
                     </li>
                     
                 </ul>

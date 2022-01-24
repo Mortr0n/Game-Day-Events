@@ -107,11 +107,12 @@ module.exports = {
                     path: "eventsAttending",
                     model: "Event"
                 })
-            
             .then((user) => {
+                console.log(user);
                 res.json(user);
             })
             .catch((err) => {
+                console.log(err);
                 res.json(err);
             })
     },

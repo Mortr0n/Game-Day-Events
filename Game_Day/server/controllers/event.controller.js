@@ -45,10 +45,9 @@ module.exports = {
                 model: "Comment",
                 populate: {
                     path: "userId",
-                    model: "User"
+                    select: "firstName lastName email"
                 }
             })
-            .populate("userId")
             .sort({createdAt: "descending"})
             .then((foundEvent) => {
                 console.log(`Found Event ${foundEvent}`);

@@ -45,6 +45,7 @@
 
 .eventDescriptionBox {
   border: 2px solid black;
+  border-radius: 20px;
   max-height: 8em;
   overflow-y: auto;
 }
@@ -52,7 +53,6 @@
 
 
 .featuredEventsBox {
-  /* border: 2px solid black; */
   border-radius: 20px;
   padding: 5px;
   background-image: linear-gradient(
@@ -87,18 +87,7 @@
   hsl(161deg 100% 36%) 89%,
   hsl(149deg 100% 39%) 100%
 );
-  /* background-image: linear-gradient(
-  105deg,
-  hsl(240deg 100% 20%) 0%,
-  hsl(224deg 100% 25%) 21%,
-  hsl(216deg 100% 30%) 35%,
-  hsl(210deg 100% 33%) 47%,
-  hsl(204deg 100% 35%) 58%,
-  hsl(198deg 100% 37%) 68%,
-  hsl(192deg 100% 37%) 78%,
-  hsl(186deg 100% 38%) 89%,
-  hsl(180deg 99% 38%) 100%
-); */
+
 }
 
 .eventHeaders {
@@ -146,6 +135,10 @@
 
 .thisComment {
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 20px;
+}
+
+.accountText {
   font-size: 20px;
 }
 

@@ -13,6 +13,7 @@ const EventDetails = (props) => {
     const [ loaded, setLoaded ] = useState(false);
     const [ eventDate, setEventDate] = useState("")
     const [ comments, setComments ] = useState([]);
+    const [ user, setUser ] = useState({});
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/events/${id}`)
@@ -20,9 +21,20 @@ const EventDetails = (props) => {
                 console.log(res.data);
                 setGameEvent(res.data);
                 setLoaded(true);    
-                // setComments(gameEvent.comments)            
+                // setComments(gameEvent.comments)   
+                axios.get('http://localhost:8000/api/users/getLoggedIn', {
+                    withCredentials: true
+                })
+                    .then((res) => {
+                        console.log(res.data);
+                        setUser(res.data);
+                        console.log(`User is : ${user.firstName}`)
+                    })
+                    .catch((err) => console.log(err))
             })
-            .catch((err) => console.log(err))
+            .catch((err) => console.log(err))         
+            
+        
     }, [comments])
 
 
@@ -75,21 +87,21 @@ const EventDetails = (props) => {
                         
                     </div>
                     <div className='col-6 offset-3'>
-                        {/* TODO: Replace Delete With Real Thing */}
-                        
-                        
-                        
                         <p className='eventDetailLabels fw-bold'>Event Description</p>
                         <p className='eventDescriptionBox'>{gameEvent.eventDescription}</p>
-                        <div className='row mt-4'>
-                            <div className='col-3 offset-5'>
-                                <Link className='removeTextDecoration' to={`/events/${id}/edit`}><button className='btn btn-secondary btn-sm mb-3 mt-3 '>Edit Event</button></Link>
-                        
+                        {/* Only show edit/delete if logged in user is the event creator */}
+                        {
+                            (gameEvent.userId===user._id) &&
+                            <div className='row mt-4'>
+                                {console.log(gameEvent.userId + " hi " + user._id)}
+                                <div className='col-3 offset-5'>
+                                    <Link className='removeTextDecoration' to={`/events/${id}/edit`}><button className='btn btn-secondary btn-sm mb-3 mt-3 '>Edit Event</button></Link>
+                                </div>
+                                <div className='col-2 mt-3'>
+                                    <DeleteButton id={id} successCallback={() => navigate('/events/list')} />
+                                </div>
                             </div>
-                            <div className='col-2 mt-3'>
-                                <DeleteButton id={id} successCallback={() => navigate('/events/list')} />
-                            </div>
-                        </div>
+                        }
                     </div>
                 </div>
                 <div className='row text-start'>
@@ -110,7 +122,6 @@ const EventDetails = (props) => {
                     </div>
                 </div>
             </div>
-            
             }
             {
                 loaded &&
