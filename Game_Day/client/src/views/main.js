@@ -1,25 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import NavBar from '../components/NavBar';
+import ListEventsAttending from '../components/ListEventsAttending';
 
 const Main = (props) => {
     const { user, setUser } = props;
-    // const [ userFirstName, setUserFirstName ] = useState("");
-    // const [ userLastName, setUserLastName ] = useState("");
+    const [ loaded, setLoaded ] = useState(false);
 
 
-
-
-    useEffect(() => {
-        axios.get(`http://localhost:8000/api/users/getLoggedIn`, {
-            withCredentials: true
-        })
-        .then((res) => {
-            setUser(res.data)
-        })
-        .catch((err) => console.log(err));
-    }, [])
-    
 
     return(
         <div>
@@ -33,6 +21,7 @@ const Main = (props) => {
                         <span>Welcome</span>
                         <h2 className="fw-bold">{user.firstName} {user.lastName}</h2>
                         <h3 className="gray-bg">WELCOME</h3>
+                        <ListEventsAttending user={user} setUser={setUser} />
                         </div>
                     </div>
                 </div>

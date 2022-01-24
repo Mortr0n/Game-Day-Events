@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 module.exports = {
 
     createComment: (req, res) => {
+        console.log("HELLO THERE!!!!!" + req.body);
         // comment obj from the post
         const comment = new Comment(req.body);
         // decoding cookie to attach userId to the comment

@@ -32,7 +32,7 @@ const EventDetails = (props) => {
             <NavBar />
             { 
             loaded &&
-            <div className='container '>
+            <div className='container wrapper '>
             
                 <div className='row eventDetailsTop mt-2'>
                     <h2 className='pageTitle'>{gameEvent.eventName}</h2>
@@ -43,7 +43,8 @@ const EventDetails = (props) => {
                             <p className=''>Contact at: {gameEvent.userId.email}</p>
                         </div>
                     }
-                    
+                    {/* TODO: Need to find a better place for edit and delete */}
+                    {/*  */}
                     <div className='col-3 offset-2'>
                         <p className='eventHeaders'>Event Date</p>
                         <p className='eventHeaders'>Attending</p>
@@ -57,27 +58,38 @@ const EventDetails = (props) => {
                     </div>
                 </div>
                 <div className='row'>
-                    <div className='col-1'>
-                    <Link className='removeTextDecoration' to={`/events/${id}/edit`}><button className='btn btn-primary mb-3 mt-3 '>Edit</button></Link>
-                    <DeleteButton id={id} successCallback={() => navigate('/events/list')} />
+                    <div className='row location'>
+                        <div className='col-3 offset-1'>
+                            <p className='eventDetailLabels fw-bold whiteText'>Event Location</p>
+                        </div>
+                        <div className='col-5 offset-3'>
+                            <p className='eventDetailLabels whiteText'>{gameEvent.streetAddress}</p>
+                            <p className='eventDetailLabels whiteText'>{gameEvent.city}, {gameEvent.state}  {gameEvent.zip}</p>
+                        </div>
                     </div>
-                    <div className='col-3 offset-1'>
-                        {/* TODO: Edit Button needs replaced with real thing */}
-                        
-                        <p className='eventDetailLabels fw-bold'>Event Location</p>
-                        <div className='featuredEventsBox mb-5'>
-                            <p className='eventDetailLabels fw-bold'>Featured Events</p>
-                            <p className='eventDetailLabels'>{gameEvent.suggestedGame}</p>
+                    <div className='col-3'>
+                        <div className='featuredEventsBox mb-5 mt-5'>
+                            <p className='eventDetailLabels fw-bold whiteText'>Featured Events</p>
+                            <p className='eventDetailLabels whiteText'>{gameEvent.suggestedGame}</p>
                         </div>
                         
                     </div>
-                    <div className='col-6'>
+                    <div className='col-6 offset-3'>
                         {/* TODO: Replace Delete With Real Thing */}
                         
-                        <p className='eventDetailLabels'>{gameEvent.streetAddress}</p>
-                        <p className='eventDetailLabels'>{gameEvent.city}, {gameEvent.state}  {gameEvent.zip}</p>
+                        
+                        
                         <p className='eventDetailLabels fw-bold'>Event Description</p>
                         <p className='eventDescriptionBox'>{gameEvent.eventDescription}</p>
+                        <div className='row mt-4'>
+                            <div className='col-3 offset-5'>
+                                <Link className='removeTextDecoration' to={`/events/${id}/edit`}><button className='btn btn-secondary btn-sm mb-3 mt-3 '>Edit Event</button></Link>
+                        
+                            </div>
+                            <div className='col-2 mt-3'>
+                                <DeleteButton id={id} successCallback={() => navigate('/events/list')} />
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div className='row text-start'>

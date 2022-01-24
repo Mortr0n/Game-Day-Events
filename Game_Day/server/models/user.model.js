@@ -45,6 +45,13 @@ const UserSchema = new mongoose.Schema({
             message: "You must be at least 13 years old to register for this site."
         }
     },
+    
+    eventsAttending: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Event"
+        }
+    ]
 
 }, { timestamps: true });
 

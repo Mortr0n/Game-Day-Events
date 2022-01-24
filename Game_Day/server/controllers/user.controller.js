@@ -1,6 +1,7 @@
 const User = require('../models/user.model');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const Event = require('../models/event.model');
 
 module.exports = {
 
@@ -102,11 +103,65 @@ module.exports = {
     getLoggedInUser: (req, res) => {
         const decodedJWT = jwt.decode(req.cookies.usertoken, { complete: true });
         User.findById(decodedJWT.payload.user_id)
+            .populate ({
+                    path: "eventsAttending",
+                    model: "Event"
+                })
+            
             .then((user) => {
                 res.json(user);
             })
             .catch((err) => {
                 res.json(err);
             })
-    }
+    },
+
+    joinOneEvent: (req, res) => {
+        const decodedJWT = jwt.decode(req.cookies.usertoken, { complete: true })
+        const thisUserId = decodedJWT.payload.user_id;
+        const eventId = req.body;
+            User.findByIdAndUpdate(
+            // using the User object to push the ev
+                { _id: thisUserId},
+                {
+                    $push: { eventsAttending: eventId.id }
+                },
+                {
+                    new: true,
+                    useFindAndModify: false
+                })
+                    .populate({
+                        path: "eventsAttending",
+                        model: "User"
+                    })
+                    .then((updatedUser) => {
+                        console.log(updatedUser);
+                        res.json(updatedUser);
+                        Event.findByIdAndUpdate(
+                            { _id: eventId.id },
+                            {
+                                $push: { attendees: thisUserId }
+                            },
+                            {
+                                new: true,
+                                useFindAndModify: false
+                            }
+                        )
+                        .populate({
+                            path: "attendees",
+                            model: "Event",
+                        })
+                        .then((updatedEvent) => {
+                            console.log(updatedEvent);
+                            res.json(updatedEvent);
+                        })
+                        .catch((err) => {
+                            console.log(`Error in updating Event ${err}`);
+                        })
+                    })
+                    .catch((err) => {
+                        console.log(`Error in updating User ${err}`);
+                    })
+    },
+    
 }

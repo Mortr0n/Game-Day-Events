@@ -22,8 +22,8 @@ const DeleteButton = (props) => {
     }
 
     return(
-        <button className="btn btn-danger" onClick={deleteEvent}>
-            Delete
+        <button className="btn btn-danger btn-sm" onClick={deleteEvent}>
+            Delete Event
         </button>
     )
 }

@@ -1,3 +1,4 @@
+const { ja } = require('date-fns/locale');
 const mongoose = require('mongoose');
 
 const CommentSchema = new mongoose.Schema({
@@ -8,22 +9,7 @@ const CommentSchema = new mongoose.Schema({
         minLength: [3, "Comment must be at least 3 characters"],
         maxLength: [255, "Event name must be less than 255 characters"]
     },
-    // TODO: Remove if this doesn't blow up the world first
-    // commentDate: {
-    //     type: Date,
-    //     required: [true, "Date is required"],
-    //     validate: {
-    //         validator: function (v) {
-    //             return(
-    //                 v && // checking if there is a date object
-    //                 // checking if the date is 1 day in the future
-    //                 v.getTime() > Date.now() - 24 * 60 * 60 * 1000
-    //             );
-    //         },
-    //         message: "Date must be current"
-    //     }
-    // },
-
+    
     event: {
         type: mongoose.Schema.Types.ObjectId,
         required: [true, "Must add event ID"],
@@ -33,7 +19,7 @@ const CommentSchema = new mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
-    }   
+    }
 
 }, {timestamps: true});
 

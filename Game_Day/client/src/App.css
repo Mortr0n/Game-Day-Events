@@ -49,8 +49,56 @@
   overflow-y: auto;
 }
 
+
+
 .featuredEventsBox {
-  border: 2px solid black;
+  /* border: 2px solid black; */
+  border-radius: 20px;
+  padding: 5px;
+  background-image: linear-gradient(
+  105deg,
+  hsl(240deg 100% 20%) 0%,
+  hsl(223deg 100% 27%) 21%,
+  hsl(215deg 100% 33%) 35%,
+  hsl(209deg 100% 35%) 47%,
+  hsl(201deg 100% 35%) 58%,
+  hsl(190deg 100% 33%) 68%,
+  hsl(175deg 100% 32%) 78%,
+  hsl(161deg 100% 36%) 89%,
+  hsl(149deg 100% 39%) 100%
+);
+}
+
+.whiteText {
+  color: white;
+}
+
+.location {
+  border-radius: 20px;
+  background-image: linear-gradient(
+  105deg,
+  hsl(240deg 100% 20%) 0%,
+  hsl(223deg 100% 27%) 21%,
+  hsl(215deg 100% 33%) 35%,
+  hsl(209deg 100% 35%) 47%,
+  hsl(201deg 100% 35%) 58%,
+  hsl(190deg 100% 33%) 68%,
+  hsl(175deg 100% 32%) 78%,
+  hsl(161deg 100% 36%) 89%,
+  hsl(149deg 100% 39%) 100%
+);
+  /* background-image: linear-gradient(
+  105deg,
+  hsl(240deg 100% 20%) 0%,
+  hsl(224deg 100% 25%) 21%,
+  hsl(216deg 100% 30%) 35%,
+  hsl(210deg 100% 33%) 47%,
+  hsl(204deg 100% 35%) 58%,
+  hsl(198deg 100% 37%) 68%,
+  hsl(192deg 100% 37%) 78%,
+  hsl(186deg 100% 38%) 89%,
+  hsl(180deg 99% 38%) 100%
+); */
 }
 
 .eventHeaders {
@@ -125,7 +173,7 @@
 }
 .active.primary-btn-outline, .primary-btn-outline:hover, .primary-btn-outline:focus {
   background: var(--primary-dark);
-  color: var(--white);
+  /* color: var(--white); */
 }
 .deactive.primary-btn-outline {
   color: var(--dark-3);

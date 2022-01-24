@@ -95,6 +95,13 @@ const EventSchema = new mongoose.Schema({
             ref: "Comment",
         }
     ],
+    // array of Users who join each event
+    attendees: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User"
+        }
+    ]
     
 
 }, {timestamps: true});

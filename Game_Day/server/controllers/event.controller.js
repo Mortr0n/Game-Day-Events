@@ -48,6 +48,7 @@ module.exports = {
                     model: "User"
                 }
             })
+            .populate("userId")
             .sort({createdAt: "descending"})
             .then((foundEvent) => {
                 console.log(`Found Event ${foundEvent}`);
@@ -77,4 +78,5 @@ module.exports = {
             })
             .catch((err) => res.status(400).json(err));
     },
+
 }
