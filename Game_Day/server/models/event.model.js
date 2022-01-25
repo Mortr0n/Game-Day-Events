@@ -48,16 +48,16 @@ const EventSchema = new mongoose.Schema({
     date: {
         type: Date,
         required: [true, "You must choose a date for your event"],
-        validate: {
-            validator: function (v) {
-                return(
-                    v && // checking if there is a date object
-                    // checking if the date is 1 day in the future
-                    v.getTime() > Date.now() + 24 * 60 * 60 * 1000
-                );
-            },
-            message: "Event must be at least 1 day in the future"
-        }
+        // validate: {
+        //     validator: function (v) {
+        //         return(
+        //             v && // checking if there is a date object
+        //             // checking if the date is 1 day in the future
+        //             v.getTime() > Date.now() + 24 * 60 * 60 * 1000
+        //         );
+        //     },
+        //     message: "Event must be at least 1 day in the future"
+        // }
     },
 
     suggestedGame: {

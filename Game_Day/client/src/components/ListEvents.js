@@ -4,7 +4,7 @@ import { format } from 'date-fns';
 import JoinEventButton from './JoinEventButton';
 
 const EventList = (props) => {
-    const { gameEvents, setGameEvents } = props;
+    const { gameEvents, futureEvents } = props;
 
 let today = new Date().toLocaleDateString();
 // below line will find out if the event is today for moving it to a different table
@@ -38,7 +38,8 @@ let today = new Date().toLocaleDateString();
                                     <td>{format(new Date(gameEvent.date), 'MMMM-dd-yyyy')}</td>
                                     <td>{gameEvent.suggestedGame}</td>
                                     {/* conditional rendering for if an event is full */}
-                                    {                                        
+                                    {   
+                                        format(new Date(gameEvent.date), 'MMMM-dd-yyyy') === format(new Date(today), 'MMMM-dd-yyyy') &&
                                         gameEvent.attendees.length>=gameEvent.attendeeMax ?
                                         <td>Full</td> :
                                         <td><JoinEventButton id={gameEvent._id} successCallback={() => navigate(`/events/${gameEvent._id}`)} /> </td>
@@ -49,7 +50,6 @@ let today = new Date().toLocaleDateString();
                     }
                 </tbody>
             </table>
-
         </div>
     )
 }
