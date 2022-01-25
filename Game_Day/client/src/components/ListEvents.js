@@ -19,7 +19,7 @@ useEffect(() => {
     .catch((err)=> {
         console.log(err);
     })
-}, [user])
+}, [])
 
     return(
         <div className='col-8 offset-2'>
@@ -54,7 +54,11 @@ useEffect(() => {
                                     {   
                                         
                                         gameEvent.attendees.length>=gameEvent.attendeeMax ?
-                                        <td>Full</td> :
+                                        <td>
+                                            <p className='btn btn-danger'>
+                                                Full
+                                            </p>
+                                        </td> :
                                         !gameEvent.attendees.includes(user._id) ?
                                         <td><JoinEventButton id={gameEvent._id} successCallback={() => navigate(`/events/${gameEvent._id}`)} /> </td> :
                                         <td>

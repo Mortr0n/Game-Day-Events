@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import UserForm from '../components/UserForm';
 import { navigate } from '@reach/router';
 
 const Register = (props) => {
+    const [ errors, setErrors ] = useState([]);
 
 
     const createUser = (newUser) => {
@@ -14,6 +15,9 @@ const Register = (props) => {
             })
             .catch((err) => {
                 console.log(err.response);
+                if(err.response.data.errors) {
+                    setErrors(err.response.data.errors);
+                }
             })
     }
 
@@ -27,6 +31,7 @@ const Register = (props) => {
             initialEmail=""
             initialBirthDate=""
             initialPassword=""
+            errors={errors}
             />
         </div>
     )

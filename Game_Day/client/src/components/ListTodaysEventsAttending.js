@@ -51,13 +51,16 @@ const ListTodaysEventsAttending = (props) => {
                                     
                                     <td>{format(new Date(myEvent.date), 'MMMM-dd-yyyy')} </td>
                                     <td>{myEvent.suggestedGame}</td>
-                                    {/* TODO: conditional rendering on whether user has joined or not */}
-                                    {/* conditional rendering based on whether myEvent is full */}
-                                    
+                                    {/* conditional rendering on whether user has joined or not */}
+                                    {/* conditional rendering based on whether myEvent is full */}                                    
                                     {   
                                         
                                         myEvent.attendees.length>=myEvent.attendeeMax ?
-                                        <td>Full</td> :
+                                        <td>
+                                            <p className='btn btn-danger'>
+                                                Full
+                                            </p>
+                                        </td> :
                                         !myEvent.attendees.includes(user._id)?
                                         <td><JoinEventButton id={myEvent._id} successCallback={() => navigate(`/events/${myEvent._id}`)} /> </td> :
                                         <td>

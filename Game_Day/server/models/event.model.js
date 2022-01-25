@@ -11,7 +11,7 @@ const EventSchema = new mongoose.Schema({
 
     streetAddress: {
         type: String,
-        required: [true, "You must enter an address for the event"],
+        required: [true, "Please enter event address"],
         minLength: [5, "Street address must be at least 5 characters"],
         maxLength: [100, "Address can not be longer than 100 characters"]
     },
@@ -40,7 +40,7 @@ const EventSchema = new mongoose.Schema({
 
     attendeeMax: {
         type: Number,
-        required: [true, "You must enter a max allowed attendance"],
+        required: [true, "Please give a max attendance"],
         minLength: [1, "Max attendance must be at least 1 character long"],
         maxLength: [19, "Max attendance must be less than 20 characters long "]
     },

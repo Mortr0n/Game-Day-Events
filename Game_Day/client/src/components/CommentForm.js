@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 const CommentForm = (props) => {
     const { initialComment, comments, setComments, eventId } = props;
     const [ comment, setComment ] = useState(initialComment);
+    const [ errors, setErrors ] = useState([]);
 
     const addComment = (e) => {
         e.preventDefault();
@@ -25,6 +26,7 @@ const CommentForm = (props) => {
             })
             .catch((err) => {
                 console.log(err);
+                setErrors(err.response.data.errors);
             })
     }
 
@@ -32,7 +34,12 @@ const CommentForm = (props) => {
         // TODO: Get comments Working
         <div className='form-group container text-start'>
             <form onSubmit={addComment}>
-                <label className='mb-2 eventDetailLabels' htmlFor='comment'>Add a Comment</label>
+                {
+                    errors.comment ?
+                    <label className='mt-3 mb-2 eventDetailLabels red' htmlFor='comment'>A {errors.comment.message} if you want to push that button</label> :
+                    <label className='mt-3 mb-2 eventDetailLabels' htmlFor='comment'>Add a Comment</label>
+                }
+               
                 <input
                 type="text"
                 className="form-control"

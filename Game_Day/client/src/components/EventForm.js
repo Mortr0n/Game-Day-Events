@@ -3,7 +3,7 @@ import { format } from 'date-fns';
 
 const EventForm = (props) => {
     // worlds longest line ahead...LOOKOUT!
-    const {onSubmitProp, initialEventName,  initialStreetAddress, initialCity, initialState, initialZip, initialAttendeeMax, initialDate, initialSuggestedGame, initialEventDescription } = props;    
+    const { errors, onSubmitProp, initialEventName,  initialStreetAddress, initialCity, initialState, initialZip, initialAttendeeMax, initialDate, initialSuggestedGame, initialEventDescription } = props;    
     const [ eventName, setEventName ] = useState(initialEventName);
     const [ streetAddress, setStreetAddress ] = useState(initialStreetAddress);
     const [ city, setCity ] = useState(initialCity);
@@ -49,7 +49,11 @@ const EventForm = (props) => {
                         className='form-control'
                         value={eventName}
                         onChange={(e) => setEventName(e.target.value)} />
-                        <label htmlFor='eventName' className='form-label'>Event Name</label>
+                        {
+                            errors.eventName ?
+                            <label htmlFor='eventName' className='form-label red'>{errors.eventName.message}</label> :
+                            <label htmlFor='eventName' className='form-label'>Event Name</label>
+                        }
                     </div>
                     <div className='form-floating'>
                         <input
@@ -57,7 +61,11 @@ const EventForm = (props) => {
                         className='form-control mb-2'
                         value={streetAddress}
                         onChange={(e) => setStreetAddress(e.target.value)} />
-                        <label htmlFor='streetAddress' className='form-label'>Street Address</label>
+                        {
+                            errors.streetAddress ?
+                            <label htmlFor='streetAddress' className='form-label red'>{errors.streetAddress.message}</label> :
+                            <label htmlFor='streetAddress' className='form-label'>Street Address</label>
+                        }
                     </div>
                     <div className='form-floating'>
                         <input
@@ -65,26 +73,34 @@ const EventForm = (props) => {
                         className='form-control mb-2'
                         value={city}
                         onChange={(e => setCity(e.target.value))} />
-                        <label htmlFor='city' className='form-label'>City</label>
+                        {
+                            errors.city ?
+                            <label htmlFor='city' className='form-label red'>{errors.city.message}</label> :
+                            <label htmlFor='city' className='form-label'>City</label>
+                        }
                     </div>
                     {/* State drop down */}
                     <div className='form-floating'>
                         <select
                         className='form-select'
+                        value={state}
                         onChange={(e => setState(e.target.value))}
                         >
-                            {/* TODO: make the current state selected for updating */}
-                            <option value={state}>Select Your State</option>
+                            <option value={state}>{state}</option>
                             {
                                 allStates.map((state, index) => {
                                     return(
-                                        <option key={index} value={state}>{state}</option>
+                                        
+                                        <option key={index}  value={state}>{state}</option>
                                     )
                                 })
                             }
                         </select>
-
-                        <label htmlFor='state' className='form-label'>State</label>
+                        {
+                            errors.state ?
+                            <label htmlFor='state' className='form-label red'>{errors.state.message}</label> :
+                            <label htmlFor='state' className='form-label'>State</label>
+                        }
                     </div>
 
                     </div>
@@ -95,7 +111,11 @@ const EventForm = (props) => {
                         className='form-control mb-2'
                         value={zip}
                         onChange={(e => setZip(e.target.value))} />
-                        <label htmlFor='zip' className='form-label'>Zip</label>
+                        {
+                            errors.zip ?
+                            <label htmlFor='zip' className='form-label red'>{errors.zip.message}</label> :
+                            <label htmlFor='zip' className='form-label'>Zip</label>
+                        }
                     </div>
                     <div className='form-floating'>
                         <input
@@ -103,7 +123,11 @@ const EventForm = (props) => {
                         className='form-control mb-2'
                         value={attendeeMax}
                         onChange={(e => setAttendeeMax(e.target.value))} />
-                        <label htmlFor='attendeeMax' className='form-label'>Max Attendees</label>
+                        {
+                            errors.attendeeMax ?
+                            <label htmlFor='attendeeMax' className='form-label red'>{errors.attendeeMax.message}</label> :
+                            <label htmlFor='attendeeMax' className='form-label'>Max Attendees</label>
+                        }
                     </div>
                     <div className='form-floating'>
                         <input
@@ -111,7 +135,11 @@ const EventForm = (props) => {
                         className='form-control mb-2'
                         value={date}
                         onChange={(e => setDate(e.target.value))} />
-                        <label htmlFor='date' className='form-label'>Date</label>
+                        {
+                            errors.date ? 
+                            <label htmlFor='date' className='form-label red'>{errors.date.message}</label> :
+                            <label htmlFor='date' className='form-label'>Date</label>
+                        }
                     </div>
                     <div className='form-floating'>
                         <input
@@ -119,7 +147,11 @@ const EventForm = (props) => {
                         className='form-control mb-2'
                         value={suggestedGame}
                         onChange={(e => setSuggestedGame(e.target.value))} />
-                        <label htmlFor='suggestedGame' className='form-label'>Suggested Game(s)</label>
+                        {
+                            errors.suggestedGame ?
+                            <label htmlFor='suggestedGame' className='form-label red'>{errors.suggestedGame.message}</label> :
+                            <label htmlFor='suggestedGame' className='form-label'>Suggested Game(s)</label>
+                        }
                     </div>
                 </div>
                 <div className='row'>
@@ -130,7 +162,11 @@ const EventForm = (props) => {
                         className='form-control mb-2 ms-2'
                         value={eventDescription}
                         onChange={(e => setEventDescription(e.target.value))} />
-                        <label htmlFor='eventDescription' className='form-label'>Event Description</label>
+                        {
+                            errors.eventDescription ?
+                            <label htmlFor='eventDescription' className='form-label red'>{errors.eventDescription.message}</label> :
+                            <label htmlFor='eventDescription' className='form-label'>Event Description</label>
+                        }
                     </div>
                     </div>
                 </div>

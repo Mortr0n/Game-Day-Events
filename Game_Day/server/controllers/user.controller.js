@@ -6,16 +6,18 @@ const Event = require('../models/event.model');
 module.exports = {
 
     register: (req, res) => {
+        // FIXME: The register isn't making a cookie.  Fix this!
         User.create(req.body)
             .then(user => {
                 const userToken = jwt.sign({
-                    id: user._id
+                    user_id: user._id
                 }, process.env.JWT_SECRET);
                 // original way before JWT cookie
                 // res.json({ msg: "success!", user: user });
                 // Make sure the third item points to the secret KEY!!!!
                 res.cookie("usertoken", userToken, process.env.JWT_SECRET, {
-                    httpOnly: true
+                    httpOnly: true,
+                    expires: new Date(Date.now() + 90000000)
                 })
                 .json({ msg: "Success!", user: user });
             })

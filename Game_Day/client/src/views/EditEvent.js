@@ -17,6 +17,7 @@ const EditEvent = (props) => {
     const [ suggestedGame, setSuggestedGame ] = useState("");
     const [ eventDescription, setEventDescription ] = useState("");
     const [ loaded, setLoaded ] = useState(false);
+    const [ errors, setErrors ] = useState([]);
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/events/${id}`)
@@ -48,6 +49,7 @@ const EditEvent = (props) => {
                     navigate('/events')
                 } 
                 console.log(err.response);
+                setErrors(err.response.data.errors);
             });
     }
     
@@ -67,6 +69,7 @@ const EditEvent = (props) => {
                 initialDate={date}
                 initialSuggestedGame={suggestedGame}
                 initialEventDescription={eventDescription}
+                errors={errors}
                 />
             }
         </div>

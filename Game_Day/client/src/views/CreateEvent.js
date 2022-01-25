@@ -1,11 +1,12 @@
 import { navigate } from '@reach/router';
 import axios from 'axios';
-import React from 'react';
+import React, { useState } from 'react';
 import EventForm from '../components/EventForm';
 import NavBar from '../components/NavBar';
 
 const CreateEvent = (props) => {
     const { gameEvents, setGameEvents } = props;
+    const [ errors, setErrors] = useState([]);
 
     // take in new game event object and post to api logging the result or error
     const createEventHandler = (gameEvent) => {
@@ -25,6 +26,7 @@ const CreateEvent = (props) => {
                     navigate('/events')
                 } 
                 console.log(err.response);
+                setErrors(err.response.data.errors);
             })
     }
 
@@ -59,6 +61,7 @@ const CreateEvent = (props) => {
             initialDate=""
             initialSuggestedGame=""
             initialEventDescription=""
+            errors={errors}
             />
         </div>
     )
