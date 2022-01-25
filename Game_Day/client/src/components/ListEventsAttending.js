@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { format } from 'date-fns';
-import { Link } from '@reach/router';
+import { Link, navigate } from '@reach/router';
+import UnJoinEventButton from './UnJoinEventButton';
+
 
 
 const ListEventsAttending = (props) => {
     const { user, setUser } = props;
     const [ loaded, setLoaded ] = useState(false);
+    const [ eventsAttending, setEventsAttending ] = useState([]);
 
     // getting the user for the eventsAttending List
     useEffect(() => {
@@ -16,6 +19,7 @@ const ListEventsAttending = (props) => {
         .then((res) => {
             setUser(res.data)
             console.log(res.data);
+            setEventsAttending(user.eventsAttending);
             setLoaded(true);
         })
         .catch((err) => console.log(err));
@@ -32,14 +36,15 @@ const ListEventsAttending = (props) => {
                         <th>Attendees</th>
                         <th>Date</th>
                         <th>Games</th>
+                        <th>Activites</th>
                     </tr>
                 </thead>
                 <tbody>
                     {/* checking user has been set then mapping through for the list */}
                     {   loaded &&
-                    user.eventsAttending.map((event, idx) => {
+                    user.eventsAttending.map((event) => {
                         return(
-                            <tr key={idx}>
+                            <tr key={event._id}>
                                 <td>
                                     <Link to={`/events/${event._id}`}>
                                         {event.eventName}
@@ -49,6 +54,9 @@ const ListEventsAttending = (props) => {
                                 <td>{event.attendees.length}/{event.attendeeMax}</td>
                                 <td>{format(new Date(event.date), 'MMMM-dd-yyyy')} </td>
                                 <td>{event.suggestedGame} </td>
+                                <td>
+                                    <UnJoinEventButton id={event._id} successCallback={() => navigate(`/events/${event._id}`)} />
+                                </td>
                             </tr>
                         )
                         

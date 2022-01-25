@@ -22,7 +22,7 @@ function App() {
         <EditUserAccount path="/users/edit/:id" user={user} setUser={setUser} />
         <Main path="/events/home" user={user} setUser={setUser} />
         <CreateEvent path="/events/new" gameEvents={gameEvents} setGameEvents={setGameEvents}/>
-        <EventList path="/events/list" gameEvents={gameEvents} setGameEvents={setGameEvents} />
+        <EventList path="/events/list" gameEvents={gameEvents} setGameEvents={setGameEvents} user={user} setUser={setUser} />
         <EventDetails path="/events/:id" />
         <EditEvent path="/events/:id/edit" gameEvents={gameEvents} setGameEvents={setGameEvents} />
       </Router>

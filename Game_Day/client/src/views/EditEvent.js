@@ -50,8 +50,7 @@ const EditEvent = (props) => {
                 console.log(err.response);
             });
     }
-
-
+    
     return(
         <div>
             <NavBar />
@@ -70,7 +69,6 @@ const EditEvent = (props) => {
                 initialEventDescription={eventDescription}
                 />
             }
-            
         </div>
     )
 }

@@ -2,11 +2,15 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import NavBar from '../components/NavBar';
 import { Link } from '@reach/router';
+import {format, parseISO} from 'date-fns';
 
 const EditUserAccount = (props) => {
     const [ user, setUser ] = useState({});
     const [ loaded, setLoaded ] = useState(false);
     const [ firstName, setFirstName ] = useState("");
+    const [ lastName, setLastName ] = useState("");
+    const [ email, setEmail ] = useState("");
+    const [ birthdate, setBirthdate ] = useState("");
 
 
     
@@ -17,8 +21,10 @@ const EditUserAccount = (props) => {
             .then((res) => {
                 setUser(res.data);
                 setFirstName(user.firstName);
-                console.log(firstName)
-                setLoaded(true);
+                setLastName(user.lastName);
+                setEmail(user.email);
+                setBirthdate(user.birthdate);   
+                setLoaded(true); 
 
             })
             .catch((err) => console.log(err));
@@ -38,7 +44,7 @@ const EditUserAccount = (props) => {
                     
                     <div className='row'>
                         <div className='col-3 offset-1 mb-5'>
-                            <p className='accountText'>Name:</p>
+                            <p className='accountText'>First Name:</p>
                         </div>
                         <div className='col-6 mb-5'>
                             {/* <p className='accountText'>{user.firstName} {user.lastName}</p> */}
@@ -48,13 +54,41 @@ const EditUserAccount = (props) => {
                             value={firstName}
                             onChange={(e) => setFirstName(e.target.value)} />
                         </div>
+                        <div className='col-3 offset-1 mb-5'>
+                            <p className='accountText'>Last Name:</p>
+                        </div>
+                        <div className='col-6 mb-5'>
+                            {/* <p className='accountText'>{user.firstName} {user.lastName}</p> */}
+                            <input 
+                            type="text"
+                            className='form-control'
+                            value={lastName}
+                            onChange={(e) => setLastName(e.target.value)} />
+                        </div>
+
                     </div>
                     <div className='row'>
                         <div className='col-3 offset-1'>
                             <p className='accountText'>Email :</p>
                         </div>
-                        <div className='col-3 mb-5'>
-                            <p className='accountText'>{user.email}</p>
+                        <div className='col-6 mb-5'>
+                            <input
+                            type="text"
+                            className='form-control'
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)} />
+                        </div>
+                    </div>
+                    <div className='row'>
+                        <div className='col-3 offset-1'>
+                            <p className='accountText'>Birtdate</p>
+                        </div>
+                        <div className='col-6 mb-5'>
+                            <input
+                            type="text"
+                            className='form-control'
+                            value={birthdate}
+                            onChange={(e) => setBirthdate((e.target.value))} />
                         </div>
                     </div>
                     <div className='row'>
@@ -89,14 +123,15 @@ const EditUserAccount = (props) => {
                     <div className='row'>
                         <div className='col-6 offset-4'>
                             <img src="#" alt="Profile Image"/>
-                        </div>    
+                        </div>
+                        
                         
                     </div>
                 </div>
                 <div className='row'>
                     <Link  to={`/users/edit/${user._id}`}>
                         <button className='btn btn-info' type='submit'>
-                            Edit Account
+                            Submit Edit
                         </button>                        
                     </Link>
                     

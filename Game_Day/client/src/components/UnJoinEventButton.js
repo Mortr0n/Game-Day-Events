@@ -2,11 +2,11 @@ import React from 'react';
 import axios from 'axios';
 import { navigate } from '@reach/router';
 
-const JoinEventButton = (props) => {
+const UnJoinEventButton = (props) => {
     const { id, successCallback } = props;
 
     const joinEvent = (e) => {
-        axios.put(`http://localhost:8000/api/users/attendEvent/`,{
+        axios.put(`http://localhost:8000/api/users/unAttendEvent/`,{
             id: id
         }, {
             withCredentials: true,
@@ -24,9 +24,9 @@ const JoinEventButton = (props) => {
     }
 
     return(
-        <button className='btn btn-primary btn-sm' onClick={joinEvent}>
-            Join Event
+        <button className='btn btn-warning btn-sm' onClick={joinEvent}>
+            unJoin Event
         </button>
     )
 }
-export default JoinEventButton;
+export default UnJoinEventButton;

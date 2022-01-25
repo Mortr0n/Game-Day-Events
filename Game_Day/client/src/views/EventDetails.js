@@ -5,13 +5,13 @@ import CommentForm from '../components/CommentForm';
 import { format } from 'date-fns';
 import { Link, navigate } from '@reach/router';
 import DeleteButton from '../components/DeleteButton';
+import JoinEventButton from '../components/JoinEventButton';
+import UnJoinEventButton from '../components/UnJoinEventButton';
 
 const EventDetails = (props) => {
     const { id } = props;
-    const [ comment, initialComment ] = useState("");
     const [ gameEvent, setGameEvent ] = useState();
     const [ loaded, setLoaded ] = useState(false);
-    const [ eventDate, setEventDate] = useState("")
     const [ comments, setComments ] = useState([]);
     const [ user, setUser ] = useState({});
 
@@ -26,14 +26,11 @@ const EventDetails = (props) => {
                     .then((res) => {
                         console.log(res.data);
                         setUser(res.data);
-                        console.log(`User is : ${user.firstName}`)
                         setLoaded(true);
                     })
                     .catch((err) => console.log(err))
             })
-            .catch((err) => console.log(err))         
-            
-        
+            .catch((err) => console.log(err))   
     }, [comments])
 
     return(
@@ -46,6 +43,7 @@ const EventDetails = (props) => {
                 <div className='row eventDetailsTop mt-2'>
                     <h2 className='pageTitle'>{gameEvent.eventName}</h2>
                     {
+                        // if the creating userId information is populated then display the info as the host
                         gameEvent.userId &&
                         <div>
                             <p className='eventDetailLabels fw-bold'>Event Host: {gameEvent.userId.firstName} {gameEvent.userId.lastName}</p>
@@ -60,7 +58,7 @@ const EventDetails = (props) => {
                         <p className='eventHeaders'>
                             {format(new Date(gameEvent.date), 'MMMM-dd-yyyy')}
                             </p>
-                        <p className='eventHeaders'>{gameEvent.attendees.length} /{gameEvent.attendeeMax}</p>
+                        <p className='eventHeaders'>{gameEvent.attendees.length}/{gameEvent.attendeeMax}</p>
                     </div>
                 </div>
                 <div className='row'>
@@ -83,19 +81,31 @@ const EventDetails = (props) => {
                     <div className='col-6 offset-3'>
                         <p className='eventDetailLabels fw-bold'>Event Description</p>
                         <p className='eventDescriptionBox'>{gameEvent.eventDescription}</p>
+                        <div className='row mt-4'>
+                        <div className='col-1 offset-1 mt-3'>
+                            {
+                                !gameEvent.attendees.includes(user._id) ?
+                                <JoinEventButton id={gameEvent._id} successCallback={() => navigate(`/events/home`)} /> :
+                                
+                                <UnJoinEventButton id={gameEvent._id} successCallback={() => navigate(`/events/home`)} />
+                            }
+                            
+                                
+                            </div>
                         {/* Only show edit/delete if logged in user is the event creator */}
                         {   loaded &&(
                             (gameEvent.userId._id===user._id && loaded) &&
-                            <div className='row mt-4'>
-                                
-                                <div className='col-3 offset-5'>
+                            <>                                
+                                <div className='col-3 offset-2'>
                                     <Link className='removeTextDecoration' to={`/events/${id}/edit`}><button className='btn btn-secondary btn-sm mb-3 mt-3 '>Edit Event</button></Link>
                                 </div>
                                 <div className='col-2 mt-3'>
                                     <DeleteButton id={id} successCallback={() => navigate('/events/list')} />
                                 </div>
-                            </div>)
+                            </>
+                            )
                         }
+                        </div>
                     </div>
                 </div>
                 <div className='row text-start'>
