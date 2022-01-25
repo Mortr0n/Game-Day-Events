@@ -7,9 +7,7 @@ const Main = (props) => {
     const { user, setUser } = props;
     const [ loaded, setLoaded ] = useState(false);
 
-
-
-    return(
+return(
         <div>
             <NavBar />
             {/* <h2 className='pageTitle'>Welcome User!</h2> */}
@@ -21,12 +19,15 @@ const Main = (props) => {
                         <span>Welcome</span>
                         <h2 className="fw-bold">{user.firstName} {user.lastName}</h2>
                         <h3 className="gray-bg">WELCOME</h3>
-                        <ListEventsAttending user={user} setUser={setUser} />
                         </div>
                     </div>
                 </div>
+                
             </div>
-        </div>
+            </div>
+            <div className='col-8 offset-2'>
+                <ListEventsAttending user={user} setUser={setUser} />
+            </div>
         </div>
     )
 }

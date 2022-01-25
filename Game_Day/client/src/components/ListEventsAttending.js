@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { format } from 'date-fns';
+import { Link } from '@reach/router';
 
 
 const ListEventsAttending = (props) => {
@@ -31,7 +32,6 @@ const ListEventsAttending = (props) => {
                         <th>Attendees</th>
                         <th>Date</th>
                         <th>Games</th>
-                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -40,12 +40,15 @@ const ListEventsAttending = (props) => {
                     user.eventsAttending.map((event, idx) => {
                         return(
                             <tr key={idx}>
-                                <td>{event.eventName}</td>
+                                <td>
+                                    <Link to={`/events/${event._id}`}>
+                                        {event.eventName}
+                                    </Link>
+                                </td>
                                 <td>{event.city} {event.state}</td>
-                                <td>{event.attendeeMax}</td>
+                                <td>{event.attendees.length}/{event.attendeeMax}</td>
                                 <td>{format(new Date(event.date), 'MMMM-dd-yyyy')} </td>
                                 <td>{event.suggestedGame} </td>
-                                <td>JOIN</td>
                             </tr>
                         )
                         

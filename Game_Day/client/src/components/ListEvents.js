@@ -6,6 +6,10 @@ import JoinEventButton from './JoinEventButton';
 const EventList = (props) => {
     const { gameEvents, setGameEvents } = props;
 
+let today = new Date().toLocaleDateString();
+// below line will find out if the event is today for moving it to a different table
+// format(new Date(gameEvent.date), 'MMMM-dd-yyyy') === format(new Date(today), 'MMMM-dd-yyyy') ?
+
     return(
         <div className='col-8 offset-2'>
             <table className='eventTable table table-striped table-hover table-primary'>
@@ -30,10 +34,15 @@ const EventList = (props) => {
                                         </Link>
                                     </td>
                                     <td>{gameEvent.streetAddress}</td>
-                                    <td>{gameEvent.attendeeMax}</td>
+                                    <td>{gameEvent.attendees.length}/{gameEvent.attendeeMax}</td>
                                     <td>{format(new Date(gameEvent.date), 'MMMM-dd-yyyy')}</td>
                                     <td>{gameEvent.suggestedGame}</td>
-                                    <td><JoinEventButton id={gameEvent._id} successCallback={() => navigate(`/events/${gameEvent._id}`)} /> </td>
+                                    {/* conditional rendering for if an event is full */}
+                                    {                                        
+                                        gameEvent.attendees.length>=gameEvent.attendeeMax ?
+                                        <td>Full</td> :
+                                        <td><JoinEventButton id={gameEvent._id} successCallback={() => navigate(`/events/${gameEvent._id}`)} /> </td>
+                                    }
                                 </tr>
                             )
                         })

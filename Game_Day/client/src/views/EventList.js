@@ -31,9 +31,10 @@ const EventList = (props) => {
                     <div className="col-12">
                         <div className="content">
                         <span>Upcoming Events</span>
-                        <h2 className="fw-bold">All Events</h2>
+                        <h2 className="fw-bold">Todays Events</h2>
+                        <p className='eventHeaders'>No Events Scheduled for today.</p>
                         <h3 className="gray-bg">Events</h3>
-                        <p>Check out our future events!</p>
+                        <h2 className='fw-bold mt-5'>Upcoming Events!</h2>
                         </div>
                     </div>
                 </div>

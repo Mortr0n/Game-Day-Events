@@ -8,6 +8,7 @@ import EventDetails from './views/EventDetails';
 import EditEvent from './views/EditEvent';
 import LogReg from './views/LogReg';
 import UserAccount from './views/UserAccount';
+import EditUserAccount from './views/EditUserAccount';
 
 function App() {
   const [ gameEvents, setGameEvents ] = useState([]);
@@ -17,7 +18,8 @@ function App() {
     <div className="App">
       <Router>
         <LogReg default path="/events" />
-        <UserAccount path="/user" />
+        <UserAccount path="/user" user={user} setUser={setUser} />
+        <EditUserAccount path="/users/edit/:id" user={user} setUser={setUser} />
         <Main path="/events/home" user={user} setUser={setUser} />
         <CreateEvent path="/events/new" gameEvents={gameEvents} setGameEvents={setGameEvents}/>
         <EventList path="/events/list" gameEvents={gameEvents} setGameEvents={setGameEvents} />

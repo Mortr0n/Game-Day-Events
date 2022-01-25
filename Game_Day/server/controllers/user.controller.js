@@ -100,6 +100,17 @@ module.exports = {
             .catch((err) => res.status(400).json(err));
     },
 
+    deleteOneUser: (req, res) => {
+        User.findByIdAndDelete({ _id: req.params.id})
+            .then((deletedUser) => {
+                console.log(deletedUser);
+                res.json(deletedUser);
+            })
+            .catch((err) => {
+                res.status(400).json(err);
+            });
+    },
+
     getLoggedInUser: (req, res) => {
         const decodedJWT = jwt.decode(req.cookies.usertoken, { complete: true });
         User.findById(decodedJWT.payload.user_id)
@@ -117,6 +128,7 @@ module.exports = {
             })
     },
 
+    // pull for unjoin remove all instances of id from the arrays
     joinOneEvent: (req, res) => {
         const decodedJWT = jwt.decode(req.cookies.usertoken, { complete: true })
         const thisUserId = decodedJWT.payload.user_id;
@@ -125,7 +137,7 @@ module.exports = {
             // using the User object to push the ev
                 { _id: thisUserId},
                 {
-                    $push: { eventsAttending: eventId.id }
+                    $addToSet: { eventsAttending: eventId.id }
                 },
                 {
                     new: true,
@@ -141,7 +153,7 @@ module.exports = {
                         Event.findByIdAndUpdate(
                             { _id: eventId.id },
                             {
-                                $push: { attendees: thisUserId }
+                                $addToSet: { attendees: thisUserId }
                             },
                             {
                                 new: true,

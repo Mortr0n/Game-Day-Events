@@ -48,6 +48,10 @@ module.exports = {
                     select: "firstName lastName email"
                 }
             })
+            .populate({
+                path: "userId",
+                select: "firstName lastName email"
+            })
             .sort({createdAt: "descending"})
             .then((foundEvent) => {
                 console.log(`Found Event ${foundEvent}`);

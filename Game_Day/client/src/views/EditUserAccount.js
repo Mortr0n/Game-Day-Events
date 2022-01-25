@@ -1,36 +1,52 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios'
+import axios from 'axios';
 import NavBar from '../components/NavBar';
 import { Link } from '@reach/router';
 
-const UserProfile = (props) => {
+const EditUserAccount = (props) => {
     const [ user, setUser ] = useState({});
     const [ loaded, setLoaded ] = useState(false);
+    const [ firstName, setFirstName ] = useState("");
 
+
+    
     useEffect(() => {
         axios.get('http://localhost:8000/api/users/getLoggedIn', {
             withCredentials: true
         })
             .then((res) => {
                 setUser(res.data);
+                setFirstName(user.firstName);
+                console.log(firstName)
                 setLoaded(true);
+
             })
             .catch((err) => console.log(err));
-    }, [])
+    }, [loaded])
+
+    
 
     return(
         <div>
             <NavBar />
+            
             {
                 loaded &&
+                <form>
                 <div className='row mt-5'>
                 <div className='col-5 offset-1'>
+                    
                     <div className='row'>
                         <div className='col-3 offset-1 mb-5'>
                             <p className='accountText'>Name:</p>
                         </div>
                         <div className='col-6 mb-5'>
-                            <p className='accountText'>{user.firstName} {user.lastName}</p>
+                            {/* <p className='accountText'>{user.firstName} {user.lastName}</p> */}
+                            <input 
+                            type="text"
+                            className='form-control'
+                            value={firstName}
+                            onChange={(e) => setFirstName(e.target.value)} />
                         </div>
                     </div>
                     <div className='row'>
@@ -83,10 +99,13 @@ const UserProfile = (props) => {
                             Edit Account
                         </button>                        
                     </Link>
+                    
                 </div>
+                
             </div>
+            </form>
             }
         </div>
     )
 }
-export default UserProfile;
+export default EditUserAccount;

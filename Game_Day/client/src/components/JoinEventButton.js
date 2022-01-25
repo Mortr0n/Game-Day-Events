@@ -25,7 +25,7 @@ const JoinEventButton = (props) => {
 
     return(
         <button className='btn btn-primary btn-sm' onClick={joinEvent}>
-            Join Event
+            Join
         </button>
     )
 }
