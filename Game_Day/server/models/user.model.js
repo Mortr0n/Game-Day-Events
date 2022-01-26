@@ -32,7 +32,7 @@ const UserSchema = new mongoose.Schema({
 
     birthdate: {
         type: Date,
-        required: [true, "Birtdate is required"],
+        required: [true, "Birthdate is required"],
         validate: {
             validator: function (v) {
                 return(

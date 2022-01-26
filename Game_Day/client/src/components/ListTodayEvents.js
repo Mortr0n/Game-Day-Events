@@ -47,7 +47,11 @@ const ListTodayEvents = (props) => {
                                     {/* conditional rendering based on whether event is full */}
                                     { 
                                         event.attendees.length>=event.attendeeMax ?
-                                        <td>Full</td> :
+                                        <td>
+                                            <p className='btn btn-danger'>
+                                                Full
+                                            </p>
+                                        </td> :
                                         !event.attendees.includes(user._id) ?
                                         <td><JoinEventButton id={event._id} successCallback={() => navigate(`/events/${event._id}`)} /> </td> :
                                         <td>
