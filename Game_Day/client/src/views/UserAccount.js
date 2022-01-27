@@ -6,6 +6,7 @@ import { Link } from '@reach/router';
 const UserProfile = (props) => {
     const [ user, setUser ] = useState({});
     const [ loaded, setLoaded ] = useState(false);
+    const [ comments, setComments ] = useState([]);
 
     useEffect(() => {
         axios.get('http://localhost:8000/api/users/getLoggedIn', {
@@ -13,7 +14,18 @@ const UserProfile = (props) => {
         })
             .then((res) => {
                 setUser(res.data);
-                setLoaded(true);
+                axios.get('http://localhost:8000/api/userComments', {
+                    withCredentials: true,
+                })
+                    .then((res) => {
+                        console.log(res.data);
+                        setComments(res.data);
+                        setLoaded(true);
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    })
+                
             })
             .catch((err) => console.log(err));
     }, [])
@@ -63,7 +75,16 @@ const UserProfile = (props) => {
                             </table>
                         </div>
                     </div>
+                    <div className='row'>
+                    <div className='col-7 offset-1'>
+                        <h3 className='fw-bold'>Comment Count</h3>
+                    </div>
+                    <div className='col-1'>
+                        <h3 className='fw-bold'>{comments.length}</h3>
+                    </div>
                 </div>
+                </div>
+                
                 <div className='col-4'>
                     <div className='row mb-5'>
                         <div className='col-6 offset-4'>
@@ -79,7 +100,7 @@ const UserProfile = (props) => {
                 </div>
                 <div className='row'>
                     <Link  to={`/users/edit/${user._id}`}>
-                        <button className='btn btn-info' type='submit'>
+                        <button className='btn btn-info mt-5' type='submit'>
                             Edit Account
                         </button>                        
                     </Link>

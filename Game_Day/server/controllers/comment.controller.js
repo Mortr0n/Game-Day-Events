@@ -72,4 +72,20 @@ module.exports = {
             });
     },
 
+    getAllCommentsByUser: (req, res) => {
+        const decodedJWT = jwt.decode(req.cookies.usertoken, {
+            complete: true
+        });
+        const thisUserId = decodedJWT.payload.user_id;
+        Comment.find({ userId: thisUserId })
+            .then((userComments) => {
+                console.log(userComments);
+                res.json(userComments);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    },
+    
+
 }

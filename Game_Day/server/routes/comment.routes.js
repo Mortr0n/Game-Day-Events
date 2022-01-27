@@ -3,5 +3,6 @@ const { authenticate } = require('../config/jwt.config');
 
 module.exports = function(app) {
     app.get('/api/comments', commentController.getAllComments);
-    app.post('/api/comments', authenticate, commentController.createComment);    
+    app.post('/api/comments', authenticate, commentController.createComment);
+    app.get('/api/userComments', authenticate, commentController.getAllCommentsByUser);    
 }
