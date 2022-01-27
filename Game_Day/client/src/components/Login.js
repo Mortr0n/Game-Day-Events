@@ -3,9 +3,9 @@ import axios from 'axios';
 import { navigate } from '@reach/router';
 
 const Login = (props) => {
-    const { firstName, setFirstName } = props;
     const [ email, setEmail ] = useState("");
     const [ password, setPassword ] = useState("");
+    const [ errors, setErrors ] = useState([]);
     
 
     const loginHandler = (e) => {
@@ -25,8 +25,9 @@ const Login = (props) => {
         })
         .catch((err) => {
             console.log(err.response);
-            console.log("problem")
-            // TODO: Need Validations! setErrorMessage
+            if(err.response.data.errors) {
+                setErrors(err.response.data.errors);
+            }
         })
     }
 
@@ -39,9 +40,15 @@ const Login = (props) => {
                 className='form-control'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)} />
-                <label 
-                htmlFor='email' 
-                className='form-label'>Email</label>
+                {
+                    errors.email ?
+                    <label 
+                    htmlFor='email' 
+                    className='form-label red'>{errors.data.message}</label> :
+                    <label 
+                    htmlFor='email' 
+                    className='form-label'>Email</label>
+                }
             </div>
             <div className='form-floating mb-2'>
             <input

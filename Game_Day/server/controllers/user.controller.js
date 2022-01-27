@@ -15,6 +15,7 @@ module.exports = {
                 // original way before JWT cookie
                 // res.json({ msg: "success!", user: user });
                 // Make sure the third item points to the secret KEY!!!!
+                // FIXME: Need to fix the cookie not creating when registering
                 res.cookie("usertoken", userToken, process.env.JWT_SECRET, {
                     httpOnly: true,
                     expires: new Date(Date.now() + 90000000)
@@ -64,13 +65,13 @@ module.exports = {
                             console.log("else")
                             // passwords don't match
                             res.status(400).json({
-                                message: "invalid login attempt"
+                                message: "invalid login attempt bro"
                             })
                             .catch((err) => {
                                 console.log("comparison invalid")
                                 res.status(400).json({
-                                    message: "Invalid Login attempt"
-                                })
+                                    message: "invalid login"
+                                });
                             })
                             .catch((err) => {
                                 console.log("error with findOne")
