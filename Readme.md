@@ -25,4 +25,4 @@
 <p align="center">
   <img src="https://github.com/Mortr0n/Game-Day-Events/blob/master/Project%20Plans/ReadmePics/GameDayDetailPage.png" />
 </p> 
- 
+  
