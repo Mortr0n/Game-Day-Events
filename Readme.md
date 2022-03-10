@@ -4,7 +4,7 @@
 
 <p align="center"> 
   <img src="https://github.com/Mortr0n/Game-Day-Events/blob/master/Project%20Plans/ReadmePics/GameDayLogReg.png" />
-</p>
+</p> 
 <h2>Main Home Entry Point</h2>
 <p align="center">
   <img src="https://github.com/Mortr0n/Game-Day-Events/blob/master/Project%20Plans/ReadmePics/GameDayHome.png" />
