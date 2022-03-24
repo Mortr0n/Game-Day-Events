@@ -12,7 +12,7 @@
 <h2>Event List</h2>
 <p align="center"> 
   <img src="https://github.com/Mortr0n/Game-Day-Events/blob/master/Project%20Plans/ReadmePics/GameDayEventList.png" />
-</p>
+</p> 
 <h2>New Event</h2> 
 <p align="center">
   <img src="https://github.com/Mortr0n/Game-Day-Events/blob/master/Project%20Plans/ReadmePics/GameDayNewEvent.png" />
